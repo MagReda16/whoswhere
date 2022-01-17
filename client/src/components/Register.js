@@ -1,6 +1,6 @@
 import React from 'react';
 import './Register.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import apiService from '../utils/ApiService';
 
@@ -26,12 +26,14 @@ function Register (props) {
       setHasError(false);
     try {
       await apiService.registerUser(registerForm);
-      const {accessToken} = await apiService.logInUser({username: registerForm.username, password: registerForm.password});
-      localStorage.setItem(accessToken, 'accessToken');
-      history.push('/profile');
+      const { accessToken } = await apiService.logInUser(
+        {username: registerForm.username, 
+        password: registerForm.password});
+        localStorage.setItem(accessToken, 'accessToken');
+        history.push('/profile');
     } catch (error) {
-      setHasError(true);
-      clearForm();
+        setHasError(true);
+        clearForm();
     }
   };
 

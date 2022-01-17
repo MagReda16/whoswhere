@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { withRouter } from 'react-router-dom';
 import UserPrivateProfile from '../components/UserPrivateProfile';
 import AdminForms from '../components/AdminForms';
@@ -6,32 +6,43 @@ import apiService from '../utils/ApiService';
 import { useAuth } from '../lib/context/authContext';
 import { useHistory } from 'react-router-dom';
 
+function Profile () {
 
-
-
-function Profile (props) {
   const history = useHistory();
   const context = useAuth();
-  // const [ profile, setProfile ] = useState([]);
-  
+
   console.log(context.authUser)
 
-//logs user out, and sends them back to the homescreen
-  const handleClick = () => {
-      removeToken();
-      handleAuth();
+  useEffect(()=>{
+    const accessToken = localStorage.getItem('accessToken');
+    const getUser = async (accessToken) => {
+        const userInfo = await apiService.showProfile(accessToken);
+        if (userInfo) {
+          context.setAuthUser(userInfo);
+          console.log(userInfo);
+      } else {
+          console.log('NOPE WRONG AGAIN')
+      }
+    }; 
+    getUser(accessToken);
+  }, []);
+
+
+  const handleLogOut = () => {
+    apiService.logOut('accessToken');
+    context.setAuthUser({  
+      firstName: '',
+      lastName: '',
+      admin: false,
+      image : '',
+      location: '',
+      team: '',
+      role: ''});
       console.log('LOGGING OUT')
       history.push('/')
-  }
-  //removes token from local storage
-  const removeToken = () => {
-    apiService.logOut('accessToken');
-  }
-//sets Authenticated back to false
-  const handleAuth = () => {
-      context.setAuthUser(null);
-    }
+  };
 
+  
   const isAdmin = context.authUser.admin;
 
 return (
@@ -39,11 +50,10 @@ return (
   <UserPrivateProfile /> 
   {isAdmin &&
   <AdminForms/>}
-
-    <button onClick={handleClick}>LOGOUT</button>
+    <button onClick={handleLogOut}>LOGOUT</button>
 </div>
 
 )
 }
 
-export default withRouter(Profile);
+export default Profile;

@@ -8,15 +8,30 @@ import apiService from "../utils/ApiService";
 
 function AdminForms(props) {
 
-  const context = useAuth();
-  const user = context.authUser;
-  const [ teamForm, setTeamForm ] = useState({title:''})
 
-  const handleChange = (e) => {
+  
+  const [ teamForm, setTeamForm ] = useState({title:''})
+  const [newMemberForm, setNewMemberForm ] = useState({firstName: ''})
+
+  const handleNMChange = (e) => {
+    setNewMemberForm({...newMemberForm, [e.target.name]: e.target.value})
+  }
+
+  const handleTFChange = (e) => {
     setTeamForm({...teamForm, [e.target.name] :e.target.value})
   }
 
-  const handleSubmit = (e) => {
+  const handleNMSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      await apiService.findAUser(newMemberForm);
+      console.log('searching...')
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  const handleTFSubmit = (e) => {
     console.log('trying....')
     e.preventDefault();
     try {
@@ -28,17 +43,31 @@ function AdminForms(props) {
   }
 
   return (
-    <div className="create_team_container">
-      <form className="create_team_form" onSubmit={handleSubmit}>
+    <div>
+      <div className="create_team_container">
+        <form className="create_team_form" onSubmit={handleTFSubmit}>
       <input
          type="text" 
           name="title"
           placeholder="Team title..." 
           value={teamForm.title} 
-          onChange={handleChange}/>
-      </form>
-      <input type="submit" name="submit" value="Create Team"/>
+          onChange={handleTFChange}/>
+        </form>
+        <input type="submit" name="submit" value="Create Team"/>
+      </div>
+    <div className="add_team_member_container">
+    <form className="add_team_member_container" onSubmit={handleNMSubmit}>
+      <input
+         type="text" 
+          name="firstName"
+          placeholder="Member name..." 
+          value={newMemberForm.firstName} 
+          onChange={handleNMChange}/>
+        </form>
+        <input type="submit" name="submit" value="Search by name..."/>
     </div>
+    </div>
+
   )
 }
 

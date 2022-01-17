@@ -10,8 +10,6 @@ function Login (props) {
 const history = useHistory();
 const context = useAuth();
 
-
-
 const [ logInForm, setLogInForm ] = useState({username: '', password: ''} );
 
 const [ hasError, setHasError ] = useState(false);
@@ -32,7 +30,6 @@ const handleSubmit = async (e) => {
       setLogInForm({username: '', password: ''});
     }
   };
-  console.log(context.user)
 
   return (
     <div className='login_page'>

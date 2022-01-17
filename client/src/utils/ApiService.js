@@ -78,5 +78,17 @@ apiService.logOut = (tokenName) => {
   console.log('REMOVED TOKEN')
 }
 
+apiService.findAUser= async (newMemberForm) => {
+  return fetch(`${BASE_URL}/users`, {
+    method: 'GET',
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  })
+  // .then(res => JSON.stringify(res))
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+};
 
 export default apiService;
