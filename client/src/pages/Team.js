@@ -1,20 +1,24 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import Header from "../navigation/Header";
-
-
-
-
+import {useUsers} from '../lib/context/usersContext'
+import UserPublicProfile from '../components/UserPublicProfile';
 
 function Team () {
-  const [ team, setTeam ] = useState([]);
-  
+
+  const context = useUsers();
+
   return (
-    <h2>
-      <Header />
-      Teams page!!</h2>
-    //render individual public profiles here according to team
-  
+    <div>
+    {context.users.map((user)=> {
+      return <UserPublicProfile key={user._id} firstName={user.firstName} 
+      lastName={user.lastName}
+      role={user.role}
+      location={user.location}
+      team={user.team}/>
+    })}
+      
+      <h2>Teams page!!</h2>
+
+    </div>
   )
 }
 

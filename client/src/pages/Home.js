@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import Register from '../components/Register';
 import Login from '../components/Login';
-import Header from '../navigation/Header';
 import { useState } from 'react';
 import './Home.css'
-import { useUsers } from '../lib/context';
+
 
 
 
 function Home(props) {
 
-  // const context = useUsers();
-
-
-  const [ logIn, setLogIn ] = useState(false)
+const [ logIn, setLogIn ] = useState(false)
 
   const handleClick = () => {
     setLogIn(!logIn);
@@ -24,12 +20,7 @@ function Home(props) {
     <div className='home_page_container'>
      Welcome to whosWhere!
       {logIn ?
-       <Login 
-        allUsers={props.allUsers}
-        /> 
-        : 
-        <Register
-        /> }
+       <Login/> : <Register/> }
         <button 
         className='login_register'
         onClick={()=>handleClick()}>{logIn ? "Not a user? Register here" : "Already a user? Sign in here" }</button>

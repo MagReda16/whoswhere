@@ -1,6 +1,7 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { UsersProvider } from './lib/context';
 import apiService from './utils/ApiService';
 import Home from './pages/Home';
@@ -13,45 +14,49 @@ import { AuthProvider } from './lib/context/authContext';
 function App () {
 
   const [ users, setUsers ] = useState([]);
-  const [ auth, setAuth ] = useState(null);
+  const [ authUser, setAuthUser ] = useState(null);
   // const [ token, setToken ] = useState('')
 
   // if (token) setAuth(true);
    
   useEffect(()=>{
     const accessToken = localStorage.getItem('accessToken');
-    const getProfile = async (accessToken) => {
-      const userInfo = await apiService.showProfile(accessToken);
-      if (userInfo) {
-        setAuth(userInfo);
+    const getUser = async (accessToken) => {
+        const userInfo = await apiService.showProfile(accessToken);
+        if (userInfo) {
+          setAuthUser(userInfo);
+          console.log(userInfo)
       } else {
-        console.log('NOPE WRONG AGAIN')
-        alert('WHOOPS NOT A USER')
-        //add logic to handle unauthorized user UI
+          console.log('NOPE WRONG AGAIN')
+          // alert('WHOOPS NOT A USER')
       }
     }; 
-    getProfile(accessToken);
+    getUser(accessToken);
   }, []);
 
-  console.log(auth, 'auth')
+  // useEffect(()=> {
+  //   // getUser(accessToken);
+  // })
+  console.log('AUTH USER:', authUser)
 
-  // const updateInfo = async () => {
-  //   // const accessToken = localStorage.getItem('accessToken');
-  //   const info = await apiService.getAllUsers();
-  //   console.log(info)
-  //     setUsers(info)   
-  // };
+  const updateInfo = async () => {
+    const info = await apiService.getAllUsers();
+    console.log(info)
+      setUsers(info)   
+  };
 
-  // useEffect(()=>{
-  //   updateInfo()
-  // }, [])
+  useEffect(()=>{
+    updateInfo()
+  }, [])
+
+  console.log(users)
     
 
   return (
   <UsersProvider value={{users}} >
   <AuthProvider value={{
-    auth:auth, 
-    setAuth:setAuth
+    authUser, 
+    setAuthUser
     }}>
 <Router>
   <NavBar />
@@ -72,8 +77,8 @@ function App () {
   </Switch> 
 </main>
 </Router>
-</AuthProvider>
-</UsersProvider>
+  </AuthProvider>
+  </UsersProvider>
 
   );
 }

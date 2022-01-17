@@ -11,6 +11,7 @@ function Register (props) {
     lastName: '',
     username: '',
     password: '',
+    role: '',
     admin: false
   });
 
@@ -40,6 +41,7 @@ function Register (props) {
       lastName: '',
       username: '',
       password: '',
+      role: '',
       admin: false
     });
   }
@@ -68,6 +70,15 @@ function Register (props) {
           placeholder='Last name...'
           value={registerForm.lastName}
           onChange={handleChange} />
+    <label htmlFor="role"></label>
+    <input
+        className="role"
+        name="role"
+        placeholder="What's your role?"
+        value={registerForm.role}
+        onChange={handleChange}
+        >
+    </input>
       <label htmlFor='username'></label>
       <input 
           className='username'

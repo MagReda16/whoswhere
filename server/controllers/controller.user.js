@@ -15,6 +15,7 @@ exports.registerUser = async (req, res) => {
         lastName: added.lastName,
         username: added.username,
         password: hashedPassword,
+        role: added.role,
         admin: added.admin
     });
       await newUser.save();
@@ -35,7 +36,6 @@ exports.updateProfile = async (req, res) => {
     const updated = await User.findOneAndUpdate({username: username}, 
       {
       team: updates.team,
-      role: updates.role,
       location: updates.location,
       savedLocations: updates.savedLocations
     });

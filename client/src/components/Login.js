@@ -7,14 +7,14 @@ import './Login.css'
 
 function Login (props) {
 
-const [ logInForm, setLogInForm ] = useState( {username: '', password: ''} );
-
-const [ hasError, setHasError ] = useState(false);
-
+const history = useHistory();
 const context = useAuth();
 
 
-const history = useHistory();
+
+const [ logInForm, setLogInForm ] = useState({username: '', password: ''} );
+
+const [ hasError, setHasError ] = useState(false);
 
 const handleChange = (e) => {
   setLogInForm({...logInForm, [e.target.name]: e.target.value})
@@ -26,16 +26,13 @@ const handleSubmit = async (e) => {
     try {
       const { accessToken }  = await apiService.logInUser(logInForm);
       localStorage.setItem('accessToken', accessToken);
-      // context.setAuth(true);
-      // context.setToken(accessToken);
-      // console.log(context.token);
       history.push('/profile');
     } catch (error) {
       setHasError(true);
       setLogInForm({username: '', password: ''});
     }
-  }
-
+  };
+  console.log(context.user)
 
   return (
     <div className='login_page'>

@@ -30,7 +30,7 @@ apiService.logInUser = (logInForm) => {
 };
 
 apiService.showProfile = (accessToken) => {
-  return fetch('http://localhost:3001/profile', {
+  return fetch(`${BASE_URL}/profile`, {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',
@@ -62,6 +62,16 @@ apiService.updateProfile = (profileForm, accessToken) => {
     body: JSON.stringify(profileForm)
   })
 }
+
+apiService.createTeam = (teamForm) => {
+  return fetch(`${BASE_URL}/teams`,{
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(teamForm)
+}).then((res)=> res.json());
+}; 
 
 apiService.logOut = (tokenName) => {
   localStorage.removeItem(tokenName);

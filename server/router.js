@@ -6,16 +6,15 @@ const authMiddleware = require('./middleware/auth')
 
 router.get('/users', userControllers.getAllUsers);
 router.get('/profile', authMiddleware, userControllers.showUserProfile);
-// router.get('/publicprof', userControllers.publicProfile);
 router.post('/login', userControllers.logIn);
 router.post('/register', userControllers.registerUser);
 router.put('/profile', authMiddleware, userControllers.updateProfile);
 
 router.get('/teams', teamControllers.getAllTeams);
 router.get('/myteam', teamControllers.showMyTeam);
-router.post('/addteam', teamControllers.createNewTeam);
+router.post('/teams', teamControllers.createNewTeam);
 router.put('/addmember', teamControllers.addTeamMember);
-router.delete('/teams/:id', teamControllers.deleteTeam);
+router.delete('/teams', teamControllers.deleteTeam);
 
 
 //add adminmiddleware for addteam, addmember ?

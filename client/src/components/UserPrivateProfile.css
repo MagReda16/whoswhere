@@ -1,6 +1,92 @@
+.user_heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .user_page_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.update_user_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e68627;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 3px;
+  margin: 10px;
+  width: 40vw;
+}
+
+.update_user_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update_user_location {
+  font-weight: bold;
+  padding: 8px;
+  width: 250px;
+}
+
+.submit_user_update {
+  border-radius: 2px;
+  border-style: none;
+  background-color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  width: 29vw;
+  color: #e68627;
+  padding: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+}
+.submit_user_update:hover {
+  background-color: #a3a19e;
+  color: white;
+}
+
+.user_profile_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+}
+
+.user_image {
+  background-color: aliceblue;
+  height: 40px;
+  width: 40px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user_info_container {
+  display: flex;
+  flex-direction: column;
+  background-color: #e68627;
+  margin-right: 100px;
+  justify-content: flex-start;
+  padding: 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 30px;
+}
+
+.user_details {
+  padding-top: 10px
+}
+
+
+
+
+

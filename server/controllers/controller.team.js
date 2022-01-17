@@ -13,7 +13,7 @@ exports.createNewTeam = async (req, res) => {
     });
     let user;
     try {
-      user = await User.findById(owner);
+      user = await (await User.findById(owner))
     } catch (error) {
       res.sendStatus(500)
       console.log('Creating team failed')
@@ -22,8 +22,7 @@ exports.createNewTeam = async (req, res) => {
       res.sendStatus(404)
       console.log('Could not find user for provided ID')
     }
-    console.log(user);
-
+    // console.log(user);
     try {
       const sess = await mongoose.startSession();
       sess.startTransaction();
