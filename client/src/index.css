@@ -1,6 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Hind+Siliguri:wght@300&family=Oswald:wght@300&family=Oxygen&family=Sora:wght@800&display=swap');
 
 body {
-  font-family: 'Oswald', sans-serif;
+font-family: 'Dongle', sans-serif;
+
+/* font-family: 'Hind Siliguri', sans-serif;
+font-family: 'Oswald', sans-serif;
 font-family: 'Oxygen', sans-serif;
+font-family: 'Sora', sans-serif; */
 }
+
+* {
+  box-sizing: border-box;
+}
+

@@ -4,7 +4,6 @@ const User = require('../models/model.user');
 const authMiddleware = async (req, res, next) =>{
   const authorization = req.headers.authorization;
   if (!authorization) {
-    console.log('HERES THE PROBLEM')
     return res.sendStatus(403);
   }
   const accessToken = authorization.split(' ')[1];
@@ -14,7 +13,6 @@ const authMiddleware = async (req, res, next) =>{
     const user = await User.findOne({ username });
     if (!user) return res.sendStatus(401);
     req.user = user
-    console.log('USER', user)
     next();
   } catch (error) {
     res.sendStatus(404);

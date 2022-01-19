@@ -2,7 +2,6 @@ import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
 
-
 export const AuthProvider = ({children}) => {
   const [ authUser, setAuthUser ] = useState({
     firstName: '',
@@ -11,6 +10,7 @@ export const AuthProvider = ({children}) => {
     image : '',
     location: '',
     team: '',
+    tasks: [],
     role: ''
   });
 

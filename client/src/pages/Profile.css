@@ -1,0 +1,13 @@
+.profile_page {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.profile_page_container {
+  width: 80vw;
+}
+.admin_forms_container {
+  display: flex;
+  justify-content: flex-start;
+  width: 20vw;
+}

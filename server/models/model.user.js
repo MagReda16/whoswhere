@@ -1,6 +1,4 @@
 const mongoose = require('../db');
-// const uniqueValidator = require('mongoose-unique-validator');
-
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -32,13 +30,8 @@ const userSchema = new Schema({
     required: false
   },
   team: {
-      type: [mongoose.Types.ObjectId],
-      ref: 'team',
+      type: String,
       required: false
-  },
-  savedLocations: {
-    type: [ String ],
-    required: false
   },
   location: {
     type: String,
@@ -48,22 +41,14 @@ const userSchema = new Schema({
     type: String,
     required: false,
     default: ""
+  },
+  tasks : {
+    type: [ String ],
+    required: false
   }
 });
 
-// userSchema.plugin(uniqueValidator);
 
 
 module.exports = mongoose.model('user', userSchema);
 
-
-//for current location and location, possibly remove required: 'true'-- will default to false
-//possibly add picture: 
-  //image: {
-  //   type: String,
-  //   required: false,
-  //   default: (link to default profle img)
-  //    
-  // }
-
-  //can include timestamps: true to keep track within database of users update to location

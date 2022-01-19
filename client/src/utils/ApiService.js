@@ -39,9 +39,7 @@ apiService.showProfile = (accessToken) => {
       'Content-Type' : 'application/json'
     },
   })
-  // .then(res => JSON.stringify(res))
   .then(res => res.json())
-  // .then(data => console.log(data))
   .catch(err => console.log(err))
 };
 
@@ -53,7 +51,7 @@ apiService.getAllTeams = async () => {
 };
 
 apiService.updateProfile = (profileForm, accessToken) => {
-  return fetch(`http://localhost:3001/profile`, {
+  return fetch(`http://localhost:3001/profile/location`, {
     method: 'PUT',
     headers: {
       'Content-Type' : 'application/json',
@@ -61,34 +59,25 @@ apiService.updateProfile = (profileForm, accessToken) => {
     },
     body: JSON.stringify(profileForm)
   })
-}
-
-apiService.createTeam = (teamForm) => {
-  return fetch(`${BASE_URL}/teams`,{
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(teamForm)
-}).then((res)=> res.json());
-}; 
-
-apiService.logOut = (tokenName) => {
-  localStorage.removeItem(tokenName);
-  console.log('REMOVED TOKEN')
-}
-
-apiService.findAUser= async (newMemberForm) => {
-  return fetch(`${BASE_URL}/users`, {
-    method: 'GET',
-    headers: {
-      'Content-Type' : 'application/json'
-    }
-  })
-  // .then(res => JSON.stringify(res))
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
 };
+
+apiService.updateTasks = (taskForm, accessToken) => {
+  return fetch(`${BASE_URL}/profile/task`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type' : 'application/json',
+      'Authorization' : `Bearer ${accessToken}`
+    },
+    body: JSON.stringify(taskForm)
+  });
+};
+
+apiService.logOut = () => {
+  localStorage.removeItem('accessToken')
+};
+
+
+
+
 
 export default apiService;

@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Oxygen&family=Sora:wght@800&display=swap');
+
+.mainnav_title {
+font-family: 'Oswald', sans-serif;
+font-family: 'Oxygen', sans-serif;
+font-family: 'Sora', sans-serif;
+text-shadow: 0px 2px 2px rgba(81,67,21,0.8);
+}
 .navbar_menu {
   width: 3rem;
   height: 3rem;

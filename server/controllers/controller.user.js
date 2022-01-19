@@ -15,6 +15,7 @@ exports.registerUser = async (req, res) => {
         lastName: added.lastName,
         username: added.username,
         password: hashedPassword,
+        team: added.team,
         role: added.role,
         admin: added.admin
     });
@@ -27,20 +28,14 @@ exports.registerUser = async (req, res) => {
 }
 };
 
-exports.updateProfile = async (req, res) => {
+exports.updateLocation = async (req, res) => {
   try {
-    // const username = req.params.username
     const {username} = req.user
     const updates = req.body
     const updated = await User.findOneAndUpdate({username: username}, 
       {
-      team: updates.team,
       location: updates.location,
-      savedLocations: updates.savedLocations
     });
-
-    console.log(updated, "UPDATES")
-
     res.send(updated);
     res.status(200);
 
@@ -73,8 +68,6 @@ exports.showUserProfile = async (req, res) => {
   try {
     const {username}  = req.user;
     let user = await User.findOne({username})
-    // const user = req.user
-    console.log('RUNNING HERE')
    const info = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -83,12 +76,9 @@ exports.showUserProfile = async (req, res) => {
       team: user.team,
       image: user.image,
       location: user.location,
-      savedLocations: user.savedLocations
-   }
-    // const userProfile = await User.findOne({user})
+      tasks: user.tasks
+    }
     res.status(200).json(info)
-    console.log('its the USERPROFILE !!!!', user)
-    // res.send(user);
  } catch (error) {
    console.log(error)
    res.status(400)
@@ -99,7 +89,6 @@ exports.getAllUsers =  async (req, res) => {
   try {
      const allUsers = await User.find({}) 
      res.send(allUsers);
-    //  console.log(allUsers)
      res.status(200)
   } catch (error) {
     console.log(error)
@@ -107,28 +96,18 @@ exports.getAllUsers =  async (req, res) => {
   }
 };
 
-
-exports.getUser = async (req, res) => {
+exports.addTask = async (req, res) => {
   try {
-    const {username}  = req.user;
-    let user = await User.findOne({firstName})
-    // const user = req.user
-    console.log('RUNNING HERE')
-   const info = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      admin: user.admin,
-      role: user.role,
-      team: user.team,
-      image: user.image,
-      location: user.location,
-   }
-    // const userProfile = await User.findOne({user})
-    res.status(200).json(info)
-    console.log('its the USER YOU SEARCHED FOR !!!!', user)
-    // res.send(user);
- } catch (error) {
-   console.log(error)
-   res.status(400)
- }
-};
+    const { username } = req.user
+    const updates = req.body
+    const updated = await User.updateOne({username: username}, {$push: {tasks: updates.tasks}});
+    console.log(updates);
+    res.send(updated);
+    res.status(200);
+  } catch (error) {
+    res.sendStatus(404);
+    console.log(error);
+  }
+}
+
+

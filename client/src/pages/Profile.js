@@ -1,58 +1,39 @@
-import React, {useContext, useEffect} from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {useEffect} from 'react';
 import UserPrivateProfile from '../components/UserPrivateProfile';
 import AdminForms from '../components/AdminForms';
 import apiService from '../utils/ApiService';
 import { useAuth } from '../lib/context/authContext';
-import { useHistory } from 'react-router-dom';
+import { } from 'react-router-dom';
+import './Profile.css';
 
 function Profile () {
-
-  const history = useHistory();
   const context = useAuth();
-
-  console.log(context.authUser)
 
   useEffect(()=>{
     const accessToken = localStorage.getItem('accessToken');
-    const getUser = async (accessToken) => {
+    const getAuthUser = async (accessToken) => {
         const userInfo = await apiService.showProfile(accessToken);
         if (userInfo) {
           context.setAuthUser(userInfo);
-          console.log(userInfo);
+          console.log('USERINFO', userInfo);
       } else {
           console.log('NOPE WRONG AGAIN')
       }
     }; 
-    getUser(accessToken);
+    getAuthUser(accessToken);
   }, []);
 
-
-  const handleLogOut = () => {
-    apiService.logOut('accessToken');
-    context.setAuthUser({  
-      firstName: '',
-      lastName: '',
-      admin: false,
-      image : '',
-      location: '',
-      team: '',
-      role: ''});
-      console.log('LOGGING OUT')
-      history.push('/')
-  };
-
-  
   const isAdmin = context.authUser.admin;
 
 return (
-<div>
+<div className='profile_page'>
+  <div className='profile_page_container'>
   <UserPrivateProfile /> 
-  {isAdmin &&
-  <AdminForms/>}
-    <button onClick={handleLogOut}>LOGOUT</button>
+  </div>
+  <div className='admin_forms_container'>
+  {isAdmin && <AdminForms /> }
+  </div>
 </div>
-
 )
 }
 

@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Redirect, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UsersProvider } from './lib/context';
 import apiService from './utils/ApiService';
@@ -13,12 +13,9 @@ import { AuthProvider } from './lib/context/authContext';
 
 function App () {
 
-  const [ users, setUsers ] = useState([]);
- 
-
-  const updateInfo = async () => {
+    const [ users, setUsers ] = useState([]);
+    const updateInfo = async () => {
     const info = await apiService.getAllUsers();
-    console.log(info)
       setUsers(info)   
   };
 
@@ -26,9 +23,8 @@ function App () {
     updateInfo()
   }, [])
 
-    
   return (
-  <UsersProvider value={{users}} >
+  <UsersProvider value={{users, setUsers, updateInfo}} >
   <AuthProvider>
 <Router>
   <NavBar />
@@ -50,9 +46,8 @@ function App () {
 </main>
 </Router>
   </AuthProvider>
-  </UsersProvider>
-
+    </UsersProvider>
   );
-}
+};
 
 export default App;

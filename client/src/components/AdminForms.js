@@ -1,74 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import './AdminForms.css';
-import { useAuth } from '../lib/context/authContext'
-import {useState} from 'react';
+import { useAuth } from "../lib/context/authContext";
 import apiService from "../utils/ApiService";
-// import { useUsers } from '../lib/context';
 
 
-function AdminForms(props) {
+function AdminForms() {
 
+  const context = useAuth();
 
-  
-  const [ teamForm, setTeamForm ] = useState({title:''})
-  const [newMemberForm, setNewMemberForm ] = useState({firstName: ''})
+  const [ taskForm, setTaskForm ] = useState( {tasks: ''} )
 
-  const handleNMChange = (e) => {
-    setNewMemberForm({...newMemberForm, [e.target.name]: e.target.value})
-  }
+  const updateUserTasks = async (taskForm) => {
+      const token = localStorage.getItem('accessToken');
+      await apiService.updateTasks(taskForm, token);
+    
+    };
+  const handleChange = (e) => {
+      setTaskForm({...taskForm, [e.target.name]: e.target.value})
+    };
 
-  const handleTFChange = (e) => {
-    setTeamForm({...teamForm, [e.target.name] :e.target.value})
-  }
-
-  const handleNMSubmit = async (e) => {
-    e.preventDefault();
-    try{
-      await apiService.findAUser(newMemberForm);
-      console.log('searching...')
-    } catch(error) {
-      console.log(error)
-    }
-  }
-
-  const handleTFSubmit = (e) => {
-    console.log('trying....')
-    e.preventDefault();
-    try {
-      apiService.createTeam(teamForm);
-      console.log('team created!!')
-    } catch(error) {
-      console.log(error)
-    }
-  }
-
+  const handleSubmit = async (e) => {
+     e.preventDefault();
+     await updateUserTasks(taskForm)
+      context.setAuthUser({
+        firstName: context.authUser.firstName,
+        lastName: context.authUser.lastName,
+        role: context.authUser.role,
+        admin: context.authUser.admin,
+        team: context.authUser.team,
+        image: context.authUser.image,
+        location: context.authUser.location,
+        tasks: [...context.authUser.tasks, (taskForm.tasks)]
+    });
+    setTaskForm({tasks: ''});
+  };
+ 
   return (
-    <div>
-      <div className="create_team_container">
-        <form className="create_team_form" onSubmit={handleTFSubmit}>
-      <input
-         type="text" 
-          name="title"
-          placeholder="Team title..." 
-          value={teamForm.title} 
-          onChange={handleTFChange}/>
-        </form>
-        <input type="submit" name="submit" value="Create Team"/>
+    <div className="add_task_wrapper">
+      <div className="add_task_container">
+      <p>Let your team know what's important today</p>
+        <form className="add_task_form" onSubmit={handleSubmit} >
+          <input className="add_task" name="tasks" placeholder="Add a task..." value={taskForm.tasks} onChange={handleChange}/>
+          <input className="submit_task_btn" type='submit' name='update' value='Add Task' />
+        </form> 
       </div>
-    <div className="add_team_member_container">
-    <form className="add_team_member_container" onSubmit={handleNMSubmit}>
-      <input
-         type="text" 
-          name="firstName"
-          placeholder="Member name..." 
-          value={newMemberForm.firstName} 
-          onChange={handleNMChange}/>
-        </form>
-        <input type="submit" name="submit" value="Search by name..."/>
     </div>
-    </div>
-
-  )
-}
+  );
+};
 
 export default AdminForms;

@@ -1,3 +1,10 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+
 .register_page {
   display: flex;
   flex-direction: column;
@@ -7,18 +14,98 @@
 .register_form_container {
   display: flex;
   flex-direction: column;
+  background-color: #548eba;;
+  border-radius: 4px;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  margin: 28px;
+  margin-bottom: 22px;
+  padding: 10px;
+  padding-bottom: 6px;
+}
+
+.firstname, .lastname, .reg_username, .reg_password, .role, .team {
+  border-radius: 2px;
+  border-style: none;
+  margin: 5px;
+  padding: 4px;
+  font-weight: bolder;
+  width: 40vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+}
+::placeholder {
+  color: gray;
+}
+
+.checkbox_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.submit {
+  border-radius: 2px;
+  border-style: none;
+  background-color: #e68627;
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+}
+
+.submit:active {
+  background-color: gray;
+  color:#e68627;
+}
+
+.submit:hover {
+  background-color: white;
+  color:#e68627;
+  cursor: pointer;
+}
+
+body {
+  background-color: aliceblue
+}
+
+.manager_tag {
+  font-size: 15px;
+  margin-left: 180px;
+  
+}
+
+
+
+
+
+
+/* 
+.register_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.register_form_container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   height: 80vh;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 90px;
   padding-bottom: 110px;
   border-radius: 5px;
   background-color: #478fc9;
   box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
 }
-
-
 
 .register_form {
   display: flex;
@@ -67,4 +154,4 @@
   background-color: white;
   color: #f58742;
   cursor: pointer;
-}
+} */
