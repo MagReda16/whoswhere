@@ -1,18 +1,13 @@
-import React, { createContext } from 'react';
+import { useContext, createContext } from "react";
 
 export const UsersContext = createContext();
 
-
-export const UsersProvider = ({value, children}) => {
-
+export const UsersProvider = ({ value, children }) => {
   return (
-    <UsersContext.Provider value={value}>
-      {children}
-    </UsersContext.Provider>
+    <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
   );
-}
+};
 
-export const useUsers = () => React.useContext(UsersContext);
-
+export const useUsers = () => useContext(UsersContext);
 
 //may be unnecessary????
