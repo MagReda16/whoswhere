@@ -11,7 +11,7 @@ function Profile() {
 
   const token = localStorage.getItem("accessToken");
 
-  if (!token) history.push("/");
+  // if (!token) history.push("/");
 
   return (
     <div className="profile_page">

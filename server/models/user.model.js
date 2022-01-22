@@ -29,8 +29,9 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  team: {
-      type: String,
+  teamId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Team',
       required: false
   },
   location: {
@@ -41,14 +42,8 @@ const userSchema = new Schema({
     type: String,
     required: false,
     default: ""
-  },
-  tasks : {
-    type: [ String ],
-    required: false
   }
 });
 
-
-
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
 

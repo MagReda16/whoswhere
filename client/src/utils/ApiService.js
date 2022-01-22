@@ -1,10 +1,11 @@
-const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "http://localhost:3001";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const apiService = {};
 
 apiService.getTeamUsers = async () => {
   const accessToken = localStorage.getItem("accessToken");
-  return fetch(`${BASE_URL}/users`, {
+  return fetch(`${API_URL}users`, {
     method: "GET",
     credentials: "include",
     mode: "cors",
@@ -18,7 +19,7 @@ apiService.getTeamUsers = async () => {
 };
 
 apiService.registerUser = (registerForm) => {
-  return fetch(`${BASE_URL}/register`, {
+  return fetch(`${API_URL}register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +29,8 @@ apiService.registerUser = (registerForm) => {
 };
 
 apiService.logInUser = (logInForm) => {
-  return fetch(`${BASE_URL}/login`, {
+  console.log(API_URL)
+  return fetch(`${API_URL}login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +41,7 @@ apiService.logInUser = (logInForm) => {
 
 apiService.showProfile = () => {
   const accessToken = localStorage.getItem("accessToken");
-  return fetch(`${BASE_URL}/profile`, {
+  return fetch(`${API_URL}profile`, {
     method: "GET",
     credentials: "include",
     mode: "cors",
@@ -54,7 +56,7 @@ apiService.showProfile = () => {
 
 apiService.updateProfile = (profileForm) => {
   const accessToken = localStorage.getItem("accessToken");
-  return fetch(`http://localhost:3001/profile/location`, {
+  return fetch(`${API_URL}profile/location`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -68,7 +70,7 @@ apiService.updateProfile = (profileForm) => {
 
 apiService.updateTasks = (taskForm) => {
   const accessToken = localStorage.getItem("accessToken");
-  return fetch(`${BASE_URL}/profile/task`, {
+  return fetch(`${API_URL}profile/task`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

@@ -1,4 +1,5 @@
-const User = require("../models/model.user");
+const User = require("../models/user.model");
+const Team = require('../models/team.model');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -8,17 +9,31 @@ const JWT_SECRET = process.env.JWT_SECRET;
 exports.registerUser = async (req, res) => {
   try {
     const exists = await User.findOne({ username: req.body.username });
-    console.log(exists);
+    // console.log(exists);
     if (exists) throw new Error("User already exists");
     const hashedPassword = await bcrypt.hash(
       req.body.password,
       parseInt(SALT_ROUNDS)
     );
+    let existingTeam = await Team.findOne({ team: req.body.team });
+    // console.log(existingTeam);
+    if (!existingTeam) {
+      existingTeam = await Team.create({
+        name: req.body.team,
+      })
+    }
     const newUser = await User.create({
       ...req.body,
+      teamId: existingTeam._id,
       password: hashedPassword,
     });
-    console.log(newUser);
+    await Team.updateOne({
+      _id: newUser.teamId
+    }, {
+      $push: { members: newUser._id }
+    });
+    // console.log(newUser);
+    // console.log(existingTeam);
     res.status(201).send(newUser);
   } catch (error) {
     console.error(error);
@@ -68,11 +83,10 @@ exports.getUser = async (req, res) => {
 
 exports.getTeamUsers = async (req, res) => {
   try {
-    const foundUsers = await User.find({
-      team: req.user.team,
-    });
-    console.log(foundUsers);
-    res.status(200).send(foundUsers);
+    const foundTeam = await Team.findOne({
+      _id: req.user.teamId,
+    }).populate('members');
+    res.status(200).send(foundTeam.members);
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "400", message: "Error retrieving users" });
@@ -88,7 +102,7 @@ exports.addTask = async (req, res) => {
       { $push: { tasks: updates.tasks } },
       { new: true }
     );
-    console.log(updatedUser);
+    // console.log(updatedUser);
     res.status(200).send(updatedUser);
   } catch (error) {
     console.error(error);

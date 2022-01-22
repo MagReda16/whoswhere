@@ -4,23 +4,27 @@ import UserPublicProfile from "../components/UserPublicProfile";
 import Tasks from "../components/Tasks";
 import apiService from "../utils/ApiService";
 import "./Team.css";
+import { useTeamUsers } from "../lib/hooks/useTeamUsers";
 
 function Team() {
   const { loggedUser } = useAuth();
   const [taskDisplay, setTaskDisplay] = useState(false);
   const [teamUsers, setTeamUsers] = useState([]);
+  const {data, error, teamAdmin} = useTeamUsers();
 
-  const adminUser = teamUsers.filter((user) => user.admin)[0];
-  const adminTasks = adminUser ? adminUser.tasks : [];
+  // if (!data) data = [];
+
+  // const adminUser = data.filter((user) => user.admin);
+  const adminTasks = teamAdmin ? teamAdmin.tasks : [];
 
   const getTeamMembers = async () => {
     const members = await apiService.getTeamUsers();
     setTeamUsers(members);
   };
 
-  useEffect(() => {
-    getTeamMembers();
-  }, []);
+  // useEffect(() => {
+  //   getTeamMembers();
+  // }, []);
 
   const handleClick = () => {
     setTaskDisplay(!taskDisplay);
@@ -33,7 +37,7 @@ function Team() {
       </h2>
       <div className="public_profile_page">
         <div className="profile_card">
-          {teamUsers.map((user) => {
+          {data && data.map((user) => {
             return <UserPublicProfile key={user._id} user={user} />;
           })}
         </div>
@@ -47,13 +51,13 @@ function Team() {
             className="task_list"
             style={{ display: taskDisplay ? "block" : "none" }}
           >
-            {adminTasks.length > 0 ? (
+            {/* {adminTasks.length ? (
               adminTasks.map((task, id) => {
                 return <Tasks key={id} info={task} />;
               })
             ) : (
               <h4>No Tasks!</h4>
-            )}
+            )} */}
           </div>
         </div>
       </div>
