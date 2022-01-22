@@ -1,36 +1,26 @@
-import React, { useEffect } from "react";
 import UserPrivateProfile from "../components/UserPrivateProfile";
 import AdminForms from "../components/AdminForms";
-import apiService from "../utils/ApiService";
 import { useAuth } from "../lib/context/authContext";
-import {} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Profile.css";
 
 function Profile() {
-  const context = useAuth();
+  const history = useHistory();
 
-  useEffect(() => {
-    const getAuthUser = async () => {
-      const accessToken = localStorage.getItem("accessToken");
-      const userInfo = await apiService.showProfile(accessToken);
-      if (userInfo) {
-        context.setAuthUser(userInfo);
-        console.log("USERINFO", userInfo);
-      } else {
-        console.log("NOPE WRONG AGAIN");
-      }
-    };
-    getAuthUser();
-  }, []);
+  const { loggedUser } = useAuth();
 
-  const isAdmin = context.authUser.admin;
+  const token = localStorage.getItem("accessToken");
+
+  if (!token) history.push("/");
 
   return (
     <div className="profile_page">
       <div className="profile_page_container">
-        <UserPrivateProfile />
+        {loggedUser && <UserPrivateProfile />}
       </div>
-      <div className="admin_forms_container">{isAdmin && <AdminForms />}</div>
+      <div className="admin_forms_container">
+        {loggedUser && loggedUser.admin && <AdminForms />}
+      </div>
     </div>
   );
 }

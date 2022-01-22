@@ -5,8 +5,8 @@ const authMiddleware = require("./middleware/auth");
 
 router.post("/register", userControllers.registerUser);
 router.post("/login", userControllers.login);
-router.get("/profile", authMiddleware, userControllers.showUserProfile);
-router.get("/users", userControllers.getAllUsers);
+router.get("/profile", authMiddleware, userControllers.getUser);
+router.get("/users", authMiddleware, userControllers.getTeamUsers);
 router.put("/profile/location", authMiddleware, userControllers.updateLocation);
 router.put("/profile/task", authMiddleware, userControllers.addTask);
 

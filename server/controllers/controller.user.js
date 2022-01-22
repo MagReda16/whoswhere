@@ -21,7 +21,7 @@ exports.registerUser = async (req, res) => {
     console.log(newUser);
     res.status(201).send(newUser);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(409).send({ error: "409", message: error.message });
   }
 };
@@ -53,12 +53,12 @@ exports.updateLocation = async (req, res) => {
     );
     res.status(200).send(updatedUser);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(409).send({ error: "409", message: error.message });
   }
 };
 
-exports.showUserProfile = async (req, res) => {
+exports.getUser = async (req, res) => {
   const userInfo = {
     ...req.user._doc,
   };
@@ -66,14 +66,15 @@ exports.showUserProfile = async (req, res) => {
   res.status(200).send(userInfo);
 };
 
-exports.getAllUsers = async (req, res) => {
+exports.getTeamUsers = async (req, res) => {
   try {
     const foundUsers = await User.find({
       team: req.user.team,
     });
+    console.log(foundUsers);
     res.status(200).send(foundUsers);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(400).send({ error: "400", message: "Error retrieving users" });
   }
 };
@@ -82,15 +83,15 @@ exports.addTask = async (req, res) => {
   try {
     const { username } = req.user;
     const updates = req.body;
-    const updated = await User.updateOne(
+    const updatedUser = await User.findOneAndUpdate(
       { username: username },
-      { $push: { tasks: updates.tasks } }
+      { $push: { tasks: updates.tasks } },
+      { new: true }
     );
-    console.log(updates);
-    res.send(updated);
-    res.status(200);
+    console.log(updatedUser);
+    res.status(200).send(updatedUser);
   } catch (error) {
-    res.sendStatus(404);
-    console.log(error);
+    console.error(error);
+    res.status(500).send({ erorr: "500", message: "Internal Server Error" });
   }
 };

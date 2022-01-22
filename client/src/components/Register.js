@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import "./Register.css";
 import { useHistory } from "react-router-dom";
 import apiService from "../utils/ApiService";
+import { useAuth } from "../lib/context/authContext";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  username: "",
+  password: "",
+  role: "",
+  team: "",
+  admin: false,
+};
 
 function Register() {
   const history = useHistory();
+  const { setLoggedUser } = useAuth();
 
-  const [registerForm, setRegisterForm] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    role: "",
-    team: "",
-    admin: false,
-  });
+  const [registerForm, setRegisterForm] = useState(initialState);
 
   const [hasError, setHasError] = useState(false);
 
@@ -32,23 +36,13 @@ function Register() {
         password: registerForm.password,
       });
       localStorage.setItem("accessToken", accessToken);
+      const user = await apiService.showProfile();
+      setLoggedUser(user);
       history.push("/profile");
     } catch (error) {
       setHasError(true);
-      clearForm();
+      setRegisterForm(initialState);
     }
-  };
-
-  const clearForm = () => {
-    setRegisterForm({
-      firstName: "",
-      lastName: "",
-      username: "",
-      password: "",
-      role: "",
-      team: "",
-      admin: false,
-    });
   };
 
   return (

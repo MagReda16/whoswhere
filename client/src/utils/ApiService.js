@@ -2,10 +2,18 @@ const BASE_URL = "http://localhost:3001";
 
 const apiService = {};
 
-apiService.getAllUsers = async () => {
-  return fetch(`${BASE_URL}/users`)
+apiService.getTeamUsers = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  return fetch(`${BASE_URL}/users`, {
+    method: "GET",
+    credentials: "include",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
     .then((res) => res.json())
-    .then((data) => data)
     .catch((err) => console.log(err));
 };
 
@@ -29,7 +37,8 @@ apiService.logInUser = (logInForm) => {
   }).then((res) => res.json());
 };
 
-apiService.showProfile = (accessToken) => {
+apiService.showProfile = () => {
+  const accessToken = localStorage.getItem("accessToken");
   return fetch(`${BASE_URL}/profile`, {
     method: "GET",
     credentials: "include",
@@ -43,14 +52,8 @@ apiService.showProfile = (accessToken) => {
     .catch((err) => console.log(err));
 };
 
-apiService.getAllTeams = async () => {
-  return fetch(`${BASE_URL}/teams`)
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((err) => console.log(err));
-};
-
-apiService.updateProfile = (profileForm, accessToken) => {
+apiService.updateProfile = (profileForm) => {
+  const accessToken = localStorage.getItem("accessToken");
   return fetch(`http://localhost:3001/profile/location`, {
     method: "PUT",
     headers: {
@@ -58,10 +61,13 @@ apiService.updateProfile = (profileForm, accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify(profileForm),
-  });
+  })
+    .then((res) => res.json())
+    .catch((e) => console.log("Error updating location", e));
 };
 
-apiService.updateTasks = (taskForm, accessToken) => {
+apiService.updateTasks = (taskForm) => {
+  const accessToken = localStorage.getItem("accessToken");
   return fetch(`${BASE_URL}/profile/task`, {
     method: "PUT",
     headers: {
@@ -69,7 +75,9 @@ apiService.updateTasks = (taskForm, accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify(taskForm),
-  });
+  })
+    .then((res) => res.json())
+    .catch((e) => console.error(e));
 };
 
 apiService.logOut = () => {
