@@ -15,7 +15,9 @@ exports.registerUser = async (req, res) => {
       req.body.password,
       parseInt(SALT_ROUNDS)
     );
-    let existingTeam = await Team.findOne({ team: req.body.team });
+    console.log(req.body.team);
+    let existingTeam = await Team.findOne({ name: req.body.team });
+    console.log(existingTeam);
     if (!existingTeam) {
       existingTeam = await Team.create({
         name: req.body.team,
@@ -26,11 +28,8 @@ exports.registerUser = async (req, res) => {
       teamId: existingTeam._id,
       password: hashedPassword,
     });
-    // await Team.updateOne({
-    //   _id: newUser.teamId
-    // }, {
-    //   $push: { members: newUser._id }
-    // });
+    console.log(existingTeam._id);
+    console.log(newUser.teamId);
     existingTeam.members.push(newUser._id);
     await existingTeam.save();
     res.status(201).send(newUser);

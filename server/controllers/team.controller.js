@@ -2,9 +2,12 @@ const Team = require('../models/team.model');
 
 exports.getTeam = async (req, res) => {
   try {
+    // console.log(req.user);
+
     const team = await Team.findOne({
       _id: req.user.teamId,
     }).populate('members').populate('tasks');
+    // console.log(team);
     res.status(200).send(team);
   } catch (error) {
     console.error(error);

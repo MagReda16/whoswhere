@@ -18,21 +18,3 @@ exports.addTask = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
-
-// exports.addTask = async (req, res) => {
-//   try {
-//     const { username } = req.user;
-//     const updates = req.body;
-//     const updatedUser = await User.findOneAndUpdate(
-//       { username: username },
-//       { $push: { tasks: updates.tasks } },
-//       { new: true }
-//     );
-//     // console.log(updatedUser);
-//     res.status(200).send(updatedUser);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ erorr: "500", message: "Internal Server Error" });
-//   }
-// };
