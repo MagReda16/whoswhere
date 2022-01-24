@@ -15,7 +15,7 @@ function Login() {
   const { setLoggedUser } = useAuth();
 
   const [logInForm, setLogInForm] = useState(initialState);
-  const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setLogInForm({ ...logInForm, [e.target.name]: e.target.value });
@@ -23,22 +23,23 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setHasError(false);
+    setError(null);
     try {
-      const { accessToken } = await apiService.logInUser(logInForm);
-      localStorage.setItem("accessToken", accessToken);
+      const data = await apiService.logInUser(logInForm);
+      if (data.error) throw new Error(data.message);
+      localStorage.setItem("accessToken", data.accessToken);
       const user = await apiService.showProfile();
       setLoggedUser(user);
       history.push("/profile");
     } catch (error) {
-      setHasError(true);
+      setError(error);
       setLogInForm(initialState);
     }
   };
 
   return (
     <div className="login_page">
-      {hasError && <div> ERROR </div>}
+      {error && <div> {error.message} </div>}
       <h2>Let's Log In!</h2>
       <div className="login_form_container">
         <form className="login_form" onSubmit={handleSubmit}>
@@ -49,6 +50,7 @@ function Login() {
             placeholder="Enter username..."
             value={logInForm.username}
             onChange={handleChange}
+            required
           />
           <input
             className="password"
@@ -57,6 +59,7 @@ function Login() {
             placeholder="Enter password..."
             value={logInForm.password}
             onChange={handleChange}
+            required
           />
           <input
             className="login_btn"

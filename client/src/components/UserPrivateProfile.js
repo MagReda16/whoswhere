@@ -18,8 +18,7 @@ function UserPrivateProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedUser = await apiService.updateProfile(profileForm);
-    console.log(updatedUser);
+    const updatedUser = await apiService.updateLocation(profileForm);
     setLoggedUser(updatedUser);
     setProfileForm({ location: "" });
   };
@@ -27,7 +26,6 @@ function UserPrivateProfile() {
   const handleLogOut = () => {
     localStorage.removeItem("accessToken");
     setLoggedUser(null);
-    console.log("LOGGING OUT");
     history.push("/");
   };
 

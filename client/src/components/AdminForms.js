@@ -3,7 +3,6 @@ import apiService from "../utils/ApiService";
 import "./AdminForms.css";
 
 function AdminForms() {
-
   const [taskForm, setTaskForm] = useState({ task: "" });
 
   const handleChange = (e) => {
@@ -12,7 +11,7 @@ function AdminForms() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await apiService.updateTasks(taskForm);
+    await apiService.addTask(taskForm);
     setTaskForm({ task: "" });
   };
 

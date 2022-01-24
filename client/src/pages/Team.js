@@ -1,14 +1,13 @@
 import { useState } from "react";
 import UserPublicProfile from "../components/UserPublicProfile";
 import Tasks from "../components/Tasks";
-import "./Team.css";
 import { useTeam } from "../lib/hooks/useTeam";
+import "./Team.css";
 
 function Team() {
+  // const { loggedUser } = useAuth;
   const [taskDisplay, setTaskDisplay] = useState(false);
   const { data } = useTeam();
-
-  console.log(data);
 
   const handleClick = () => {
     setTaskDisplay(!taskDisplay);
@@ -21,9 +20,10 @@ function Team() {
       </h2>
       <div className="public_profile_page">
         <div className="profile_card">
-          {data && data.members.map((user) => {
-            return <UserPublicProfile key={user._id} user={user} />;
-          })}
+          {data &&
+            data.members.map((user) => {
+              return <UserPublicProfile key={user._id} user={user} />;
+            })}
         </div>
         <div className="task_wrapper">
           <h3>Today's Top Tasks</h3>

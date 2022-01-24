@@ -20,7 +20,7 @@ function Register() {
 
   const [registerForm, setRegisterForm] = useState(initialState);
 
-  const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleChange(e, valkey = "value") {
     setRegisterForm({ ...registerForm, [e.target.name]: e.target[valkey] });
@@ -28,9 +28,10 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setHasError(false);
+    setError(null);
     try {
-      await apiService.registerUser(registerForm);
+      const data = await apiService.registerUser(registerForm);
+      if (data.error) throw new Error(data.message);
       const { accessToken } = await apiService.logInUser({
         username: registerForm.username,
         password: registerForm.password,
@@ -40,14 +41,15 @@ function Register() {
       setLoggedUser(user);
       history.push("/profile");
     } catch (error) {
-      setHasError(true);
+      console.log("error from catch", error.message);
+      setError(error);
       setRegisterForm(initialState);
     }
   };
 
   return (
     <div className="register_page">
-      {hasError && <div> ERROR </div>}
+      {error && <div> {error.message} </div>}
       <div className="register_title_container">
         <h4 className="register_title">Let's Sign Up!</h4>
       </div>
@@ -60,6 +62,7 @@ function Register() {
             placeholder="First name..."
             value={registerForm.firstName}
             onChange={handleChange}
+            required
           />
           <input
             className="lastname"
@@ -68,6 +71,7 @@ function Register() {
             placeholder="Last name..."
             value={registerForm.lastName}
             onChange={handleChange}
+            required
           />
           <input
             className="role"
@@ -75,6 +79,7 @@ function Register() {
             placeholder="Your role..."
             value={registerForm.role}
             onChange={handleChange}
+            required
           />
           <input
             className="team"
@@ -82,6 +87,7 @@ function Register() {
             placeholder="Your team name..."
             value={registerForm.team}
             onChange={handleChange}
+            required
           />
           <input
             className="reg_username"
@@ -90,6 +96,7 @@ function Register() {
             placeholder="Create username..."
             value={registerForm.username}
             onChange={handleChange}
+            required
           />
           <input
             className="reg_password"
@@ -98,6 +105,7 @@ function Register() {
             placeholder="Create password..."
             value={registerForm.password}
             onChange={handleChange}
+            required
           />
           <div className="checkbox_wrapper">
             <label htmlFor="admin" className="admin_checkbox">
