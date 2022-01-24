@@ -1,28 +1,19 @@
-import { useState, useEffect } from "react";
-import "./AdminForms.css";
-import { useAuth } from "../lib/context/authContext";
+import { useState } from "react";
 import apiService from "../utils/ApiService";
+import "./AdminForms.css";
 
 function AdminForms() {
-  const { setLoggedUser } = useAuth();
 
-  const [taskForm, setTaskForm] = useState({ tasks: "" });
+  const [taskForm, setTaskForm] = useState({ task: "" });
 
   const handleChange = (e) => {
     setTaskForm({ ...taskForm, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    return () => {
-      setTaskForm({ tasks: "" });
-    };
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedUser = await apiService.updateTasks(taskForm);
-    setLoggedUser(updatedUser);
-    setTaskForm({ tasks: "" });
+    await apiService.updateTasks(taskForm);
+    setTaskForm({ task: "" });
   };
 
   return (
@@ -32,9 +23,9 @@ function AdminForms() {
         <form className="add_task_form" onSubmit={handleSubmit}>
           <input
             className="add_task"
-            name="tasks"
+            name="task"
             placeholder="Add a task..."
-            value={taskForm.tasks}
+            value={taskForm.task}
             onChange={handleChange}
           />
           <input

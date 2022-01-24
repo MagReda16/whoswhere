@@ -16,7 +16,6 @@ exports.registerUser = async (req, res) => {
       parseInt(SALT_ROUNDS)
     );
     let existingTeam = await Team.findOne({ team: req.body.team });
-    // console.log(existingTeam);
     if (!existingTeam) {
       existingTeam = await Team.create({
         name: req.body.team,
@@ -27,13 +26,13 @@ exports.registerUser = async (req, res) => {
       teamId: existingTeam._id,
       password: hashedPassword,
     });
-    await Team.updateOne({
-      _id: newUser.teamId
-    }, {
-      $push: { members: newUser._id }
-    });
-    // console.log(newUser);
-    // console.log(existingTeam);
+    // await Team.updateOne({
+    //   _id: newUser.teamId
+    // }, {
+    //   $push: { members: newUser._id }
+    // });
+    existingTeam.members.push(newUser._id);
+    await existingTeam.save();
     res.status(201).send(newUser);
   } catch (error) {
     console.error(error);
@@ -85,8 +84,8 @@ exports.getTeamUsers = async (req, res) => {
   try {
     const foundTeam = await Team.findOne({
       _id: req.user.teamId,
-    }).populate('members');
-    res.status(200).send(foundTeam.members);
+    }).populate('members').populate('tasks');
+    res.status(200).send(foundTeam);
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "400", message: "Error retrieving users" });

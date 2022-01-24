@@ -1,13 +1,12 @@
 import React from "react";
-import {useState} from 'react';
 import './Tasks.css';
 
-function Tasks (props) {
+function Tasks ({task}) {
 
   return (
     <div className="task_wrapper">
       <div className="task" >
-      {props.info}
+      {task.task}
       </div>
     </div>
   );

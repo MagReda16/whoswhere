@@ -14,18 +14,14 @@ const fetcher = async (key) => {
       Authorization: `Bearer ${accessToken}`,
     },
   }).then(r => r.json());
-  // const data = await res.json();
-  // return data
 }
 
-export const useTeamUsers = () => {
-  // console.log(useSWR('users', fetcher), "swr user")
-  const { data, error } = useSWR('users', fetcher);
-
+export const useTeam = () => {
+  const { data, error } = useSWR('team', fetcher);
 
   const teamAdmin = useMemo(() => {
     if (!data) return undefined;
-    return data.find((user) => user.admin);
+    return data.members.find((user) => user.admin);
   }, [data]);
 
   return {
