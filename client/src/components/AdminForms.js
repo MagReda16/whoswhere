@@ -26,6 +26,7 @@ function AdminForms() {
             placeholder="Add a task..."
             value={taskForm.task}
             onChange={handleChange}
+            required
           />
           <input
             className="submit_task_btn"
