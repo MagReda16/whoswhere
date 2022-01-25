@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
 import NavLinks from "./NavLinks";
-import { useAuth } from "../lib/context/authContext";
+import { useAuth } from "../../lib/context/authContext";
 import { Link } from "react-router-dom";
 
 import "./NavBar.css";
 
-function NavBar() {
+const NavBar = () => {
   const { loggedUser } = useAuth();
 
   return (

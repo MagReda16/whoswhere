@@ -1,9 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import "./UserPublicProfile.css";
+import "./UserInfo.css";
 
-function UserPublicProfile({ user }) {
+const UserInfo = ({ user }) => {
   return (
     <div className="public_user_info_container">
       <div className="public_user_info_header">
@@ -32,4 +32,4 @@ function UserPublicProfile({ user }) {
   );
 }
 
-export default UserPublicProfile;
+export default UserInfo;

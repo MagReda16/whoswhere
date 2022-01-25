@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import apiService from "../utils/ApiService";
-import { useAuth } from "../lib/context/authContext";
+import apiService from "../../lib/utils/ApiService";
+import { useAuth } from "../../lib/context/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faUser } from "@fortawesome/free-solid-svg-icons";
-import "./UserPrivateProfile.css";
+import "./UserProfile.css";
 
-function UserPrivateProfile() {
+const UserProfile = () => {
   const { loggedUser, setLoggedUser } = useAuth();
   const history = useHistory();
 
@@ -89,4 +89,4 @@ function UserPrivateProfile() {
   );
 }
 
-export default UserPrivateProfile;
+export default UserProfile;

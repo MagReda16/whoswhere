@@ -1,15 +1,15 @@
 import React from "react";
-import './Tasks.css';
+import './Task.css';
 
-function Tasks ({task}) {
+const Task = ({task}) => {
 
   return (
     <div className="task_wrapper">
       <div className="task" >
-      {task.task}
+      {task}
       </div>
     </div>
   );
 }
 
-export default Tasks;
+export default Task;

@@ -7,14 +7,14 @@ import {
   Switch,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
-import apiService from "./utils/ApiService";
+import apiService from "./lib/utils/ApiService";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Team from "./pages/Team";
-import NavBar from "./navigation/NavBar";
+import NavBar from "./domains/Navbar/NavBar";
 import { AuthProvider } from "./lib/context/authContext";
 
-function App() {
+const App = () => {
   const [loggedUser, setLoggedUser] = useState(null);
 
   useEffect(() => {

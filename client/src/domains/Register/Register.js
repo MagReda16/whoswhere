@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useHistory } from "react-router-dom";
-import apiService from "../utils/ApiService";
-import { useAuth } from "../lib/context/authContext";
+import apiService from "../../lib/utils/ApiService";
+import { useAuth } from "../../lib/context/authContext";
 
 const initialState = {
   firstName: "",

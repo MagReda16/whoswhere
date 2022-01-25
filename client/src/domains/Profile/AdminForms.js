@@ -1,18 +1,23 @@
 import { useState } from "react";
-import apiService from "../utils/ApiService";
+import apiService from "../../lib/utils/ApiService";
 import "./AdminForms.css";
 
-function AdminForms() {
-  const [taskForm, setTaskForm] = useState({ task: "" });
+const initialState = {
+  task: ''
+};
+
+const AdminForms = () => {
+  const [taskForm, setTaskForm] = useState(initialState);
 
   const handleChange = (e) => {
-    setTaskForm({ ...taskForm, [e.target.name]: e.target.value });
+    const {name, value} = e.target;
+    setTaskForm({ ...taskForm, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await apiService.addTask(taskForm);
-    setTaskForm({ task: "" });
+    setTaskForm(initialState);
   };
 
   return (
@@ -26,6 +31,7 @@ function AdminForms() {
             placeholder="Add a task..."
             value={taskForm.task}
             onChange={handleChange}
+            required
           />
           <input
             className="submit_task_btn"
