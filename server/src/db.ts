@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
 const DB_URL = process.env.DB_URL;
 
 (async () => {
@@ -10,4 +10,5 @@ const DB_URL = process.env.DB_URL;
   }
 })();
 
-module.exports = mongoose;
+export { Schema };
+export default mongoose;
