@@ -3,21 +3,20 @@ import User from '../models/user.model';
 import Team from '../models/team.model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import IUser from '../../interfaces/user.interface';
-import ITeam from '../../interfaces/team.interfaces';
-import IUserRequest from '../../interfaces/userRequest.interface';
+import IUser from '../interfaces/user.interface';
+import ITeam from '../interfaces/team.interfaces';
+import IUserRequest from '../interfaces/userRequest.interface';
 
-const SALT_ROUNDS: number = parseInt(process.env.SALT_ROUNDS);
-const JWT_SECRET: string = process.env.JWT_SECRET;
+const JWT_SECRET: string | jwt.Secret = process.env.JWT_SECRET || 'supersecret';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const existingUser: IUser = await User.findOne({
+    const existingUser = await User.findOne({
       username: req.body.username,
     });
     if (existingUser) throw new Error('Username already exists');
-    const hashedPassword = await bcrypt.hash(req.body.password, SALT_ROUNDS);
-    let existingTeam: ITeam = await Team.findOne({ name: req.body.team });
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let existingTeam = await Team.findOne({ name: req.body.team });
     if (!existingTeam) {
       existingTeam = await Team.create({
         name: req.body.team,
@@ -31,7 +30,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     existingTeam.members.push(newUser._id);
     await existingTeam.save();
     res.status(201).send(newUser);
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
     res.status(409).send({ error: '409', message: e.message });
   }
@@ -39,45 +38,45 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password }: { username: string; password: string } =
-      req.body;
-    const user: IUser = await User.findOne({ username: username });
+    const { username, password } = req.body;
+    const user = await User.findOne({ username: username });
     if (!user) throw new Error('Email or password is incorrect');
     const isValidPassword: boolean = await bcrypt.compare(
       password,
       user.password
     );
     if (!isValidPassword) throw new Error('Email or password is incorrect');
-    const accessToken: string = jwt.sign({ username }, JWT_SECRET);
+    const accessToken: string = jwt.sign({ userId: user._id }, JWT_SECRET);
     res.status(200).send({ accessToken });
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
     res.status(403).send({ error: '403', message: e.message });
   }
 };
 
 export const updateLocation = async (
-  req: IUserRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { username } = req.user;
+    if (!req.body.user) throw new Error();
+    const { username } = req.body.user;
     const { location }: { location: string } = req.body;
-    const updatedUser: IUser = await User.findOneAndUpdate(
+    const updatedUser = await User.findOneAndUpdate(
       { username },
       { location },
       { new: true }
     );
     res.status(200).send(updatedUser);
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
     res.status(409).send({ error: '409', message: e.message });
   }
 };
 
 export const getUser = async (
-  req: IUserRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
-  res.status(200).send(req.user);
+  res.status(200).send(req.body.user);
 };

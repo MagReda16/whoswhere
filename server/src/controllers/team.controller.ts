@@ -1,15 +1,16 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import Team from '../models/team.model';
-import ITeam from '../../interfaces/team.interfaces';
-import UserRequest from '../../interfaces/userRequest.interface';
+import ITeam from '../interfaces/team.interfaces';
+import IUserRequest from '../interfaces/userRequest.interface';
 
 export const getTeam = async (
-  req: UserRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const team: ITeam = await Team.findOne({
-      _id: req.user.teamId,
+    // if (!req.user) throw new Error();
+    const team = await Team.findOne({
+      _id: req.body.user.teamId,
     })
       .populate('members')
       .populate('tasks');

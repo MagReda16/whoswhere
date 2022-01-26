@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "../db";
-import ITask from "../../interfaces/task.interface";
+import ITask from "../interfaces/task.interface";
 
 const taskSchema: Schema = new Schema({
   team: {

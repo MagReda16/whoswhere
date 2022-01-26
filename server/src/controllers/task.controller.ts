@@ -1,21 +1,23 @@
-import { Response } from 'express';
-import UserRequest from '../../interfaces/userRequest.interface';
+import { Request, Response } from 'express';
+import IUserRequest from '../interfaces/userRequest.interface';
 import Task from '../models/task.model';
 import Team from '../models/team.model';
-import ITeam from '../../interfaces/team.interfaces';
-import ITask from '../../interfaces/task.interface';
+import ITeam from '../interfaces/team.interfaces';
+import ITask from '../interfaces/task.interface';
 
 export const addTask = async (
-  req: UserRequest,
+  req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const team: ITeam = await Team.findOne({
-      _id: req.user.teamId,
+    // if (!req.body.user) throw new Error()
+    const team = await Team.findOne({
+      _id: req.body.user.teamId,
     });
+    if (!team) throw new Error()
     const task: ITask = await Task.create({
       task: req.body.task,
-      team: req.user.teamId,
+      team: req.body.user.teamId,
     });
     team.tasks.push(task._id);
     await team.save();

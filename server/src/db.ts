@@ -1,12 +1,13 @@
-import mongoose, { Schema } from "mongoose";
-const DB_URL = process.env.DB_URL;
+import mongoose, { Schema } from 'mongoose';
+
+const DB_URL: string | undefined = process.env.DB_URL || '';
 
 (async () => {
   try {
     await mongoose.connect(DB_URL);
-    console.log("Connected to the database !!");
+    console.log('Connected to the database !!');
   } catch (err) {
-    console.log("Could not connect to the database", err);
+    console.log('Could not connect to the database', err);
   }
 })();
 

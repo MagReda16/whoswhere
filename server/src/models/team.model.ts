@@ -1,5 +1,5 @@
 import mongoose, { Schema } from '../db';
-import ITeam from '../../interfaces/team.interfaces';
+import ITeam from '../interfaces/team.interfaces';
 
 const teamSchema: Schema = new Schema({
   name: {
@@ -20,4 +20,4 @@ const teamSchema: Schema = new Schema({
   ],
 });
 
-export default mongoose.model<ITeam>('User', teamSchema);
+export default mongoose.model<ITeam>('Team', teamSchema);
