@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const DB_URL: string | undefined = process.env.DB_URL || '';
+const DB_URL: string | undefined = process.env.DB_URL!;
 
 (async () => {
   try {

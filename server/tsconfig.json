@@ -5,6 +5,7 @@
     "rootDir": "./src",
     "outDir": "./build",
     "esModuleInterop": true,
+    "strictNullChecks": false,
     "strict": true,
     "typeRoots": ["./global.d.ts", "../node_modules/@types"]
   },

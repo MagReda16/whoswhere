@@ -1,11 +1,5 @@
 import { Router } from 'express';
 import * as userController from './controllers/user.controller';
-// import {
-//   register,
-//   login,
-//   getUser,
-//   updateLocation,
-// } from './controllers/user.controller';
 import * as teamController from './controllers/team.controller';
 import * as taskController from './controllers/task.controller';
 import authMiddleware from './middleware/auth.middleware';

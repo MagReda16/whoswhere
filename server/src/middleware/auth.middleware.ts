@@ -5,13 +5,8 @@ import IUserRequest from '../interfaces/userRequest.interface';
 import IUser from '../interfaces/user.interface';
 
 
-const JWT_SECRET: string = process.env.JWT_SECRET || '';
+const JWT_SECRET: string = process.env.JWT_SECRET!;
 
-// // declare module 'jsonwebtoken' {
-//   interface UserJwtPayload extends jwt.JwtPayload {
-//       userId: string
-//   }
-// // }
 
 declare module "jsonwebtoken" {
   export interface JwtPayload {

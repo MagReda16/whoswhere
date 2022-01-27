@@ -7,11 +7,11 @@ import IUser from '../interfaces/user.interface';
 import ITeam from '../interfaces/team.interfaces';
 import IUserRequest from '../interfaces/userRequest.interface';
 
-const JWT_SECRET: string | jwt.Secret = process.env.JWT_SECRET || 'supersecret';
+const JWT_SECRET: string | jwt.Secret = process.env.JWT_SECRET!;
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const existingUser = await User.findOne({
+    const existingUser: IUser = await User.findOne({
       username: req.body.username,
     });
     if (existingUser) throw new Error('Username already exists');
@@ -39,7 +39,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ username: username });
+    const user: IUser = await User.findOne({ username: username });
     if (!user) throw new Error('Email or password is incorrect');
     const isValidPassword: boolean = await bcrypt.compare(
       password,
@@ -62,7 +62,7 @@ export const updateLocation = async (
     if (!req.body.user) throw new Error();
     const { username } = req.body.user;
     const { location }: { location: string } = req.body;
-    const updatedUser = await User.findOneAndUpdate(
+    const updatedUser: IUser = await User.findOneAndUpdate(
       { username },
       { location },
       { new: true }

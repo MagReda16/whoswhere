@@ -8,10 +8,9 @@ declare namespace NodeJS {
   }
 }
 
-// declare global{
-  declare namespace Express {
-      interface Request {
-          user: any
-      }
-  }
-// }
+
+declare namespace Express {
+    interface Request {
+        user: any
+    }
+}

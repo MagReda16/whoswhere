@@ -10,8 +10,7 @@ export const addTask = async (
   res: Response
 ): Promise<void> => {
   try {
-    // if (!req.body.user) throw new Error()
-    const team = await Team.findOne({
+    const team: ITeam = await Team.findOne({
       _id: req.body.user.teamId,
     });
     if (!team) throw new Error()
