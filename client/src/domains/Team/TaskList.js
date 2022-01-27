@@ -1,7 +1,6 @@
 import Task from './Task'
 
 const TaskList = ({ data, taskDisplay }) => {
-  console.log(data);
   return (
     <div
       className="task_list"
