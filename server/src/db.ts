@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const DB_URL: string | undefined = process.env.DB_URL!;
+const DB_URL: string = process.env.DB_URL ||'mongodb://localhost:27017/whoswhere-test';
 
 (async () => {
   try {

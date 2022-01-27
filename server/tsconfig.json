@@ -7,9 +7,11 @@
     "esModuleInterop": true,
     "strictNullChecks": false,
     "strict": true,
-    "typeRoots": ["./global.d.ts", "../node_modules/@types"]
+    "typeRoots": ["./global.d.ts", "../node_modules/@types"],
+    // "types": ["@types/mocha"]
   },
   "exclude": [
-        "../node_modules/"
+    "../node_modules/",
+    "./src/test/*.test.ts"
   ]
 }

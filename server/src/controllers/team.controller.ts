@@ -14,6 +14,7 @@ export const getTeam = async (
     })
       .populate('members')
       .populate('tasks');
+    if (!team) throw new Error();
     res.status(200).send(team);
   } catch (e) {
     console.error(e);

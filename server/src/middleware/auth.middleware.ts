@@ -5,10 +5,10 @@ import IUserRequest from '../interfaces/userRequest.interface';
 import IUser from '../interfaces/user.interface';
 
 
-const JWT_SECRET: string = process.env.JWT_SECRET!;
+const JWT_SECRET: string = process.env.JWT_SECRET! || 'this is for test purposes';
 
 
-declare module "jsonwebtoken" {
+declare module 'jsonwebtoken' {
   export interface JwtPayload {
       userId: string;
   }
@@ -24,12 +24,13 @@ const authMiddleware = async (
     if (!authorization) throw new Error();
     const accessToken: string = authorization.split(' ')[1];
     const { userId } = <jwt.JwtPayload>jwt.verify(accessToken, JWT_SECRET);
+    // console.log(userId);
     const user = await User.findOne({ _id: userId });
     if (!user) throw new Error();
     req.body.user = user;
     next();
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     res.status(403).send({ error: '403', message: 'Unauthorized request' });
   }
 };

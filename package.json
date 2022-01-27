@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'server/src/test/*.test.js'"
+    "test": "mocha -r ts-node/register 'server/src/test/*.test.ts' --exit"
   },
   "author": "",
   "license": "ISC",
