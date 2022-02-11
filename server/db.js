@@ -1,11 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const DB_URL = process.env.DB_URL;
 
-(async ()=> {
+(async () => {
   try {
-    await mongoose.connect('mongodb+srv://magreda16:Mr452452@cluster0.bq7tj.mongodb.net/soloproject?retryWrites=true&w=majority');
-    console.log('Connected to the database !!');
+    await mongoose.connect(DB_URL);
+    console.log("Connected to the database !!");
   } catch (err) {
-    console.log('Could not connect to the database', err);
+    console.log("Could not connect to the database", err);
   }
 })();
 

@@ -1,1 +1,0 @@
-export {UsersProvider, useUsers} from './usersContext';

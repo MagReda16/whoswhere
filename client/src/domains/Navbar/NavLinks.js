@@ -15,10 +15,6 @@ function NavLinks () {
       <li>
         <NavLink to="/teams">My Team</NavLink>
       </li>
-      {/* <li>
-        <NavLink to="/auth">Auth</NavLink>
-     </li> */}
-
     </ul>
   )
 }
