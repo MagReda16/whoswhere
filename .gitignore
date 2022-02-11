@@ -2,3 +2,7 @@ node_modules
 
 # ignore .env file
 .env
+
+js-server
+
+server/build
