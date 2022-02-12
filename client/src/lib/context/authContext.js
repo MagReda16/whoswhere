@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
     team: '',
     tasks: [],
     role: ''
-  });
+})
 
   return (
     <AuthContext.Provider value={{authUser, setAuthUser}}>

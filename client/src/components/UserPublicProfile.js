@@ -5,7 +5,6 @@ import './UserPublicProfile.css';
 
 function UserPublicProfile (props) {
 
-
   return (
   <div className="public_user_info_container">
     <div className='public_user_info_header'>

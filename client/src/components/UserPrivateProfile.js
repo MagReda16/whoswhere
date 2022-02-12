@@ -19,7 +19,6 @@ function UserPrivateProfile () {
     await apiService.updateProfile(profileForm, token);
  };
  
- 
   const handleChange = (e) => {
       setProfileForm({...profileForm, [e.target.name]: e.target.value})
 }
@@ -28,14 +27,15 @@ function UserPrivateProfile () {
     e.preventDefault();
     await updateUserLocation(profileForm)
     context.setAuthUser({
-      firstName: context.authUser.firstName,
-      lastName: context.authUser.lastName,
-      role: context.authUser.role,
-      admin: context.authUser.admin,
-      team: context.authUser.team,
-      image: context.authUser.image,
-      tasks: context.authUser.tasks,
-      location: profileForm.location})
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      admin: user.admin,
+      team: user.team,
+      image: user.image,
+      tasks: user.tasks,
+      location: profileForm.location
+    })
     console.log('submitting', profileForm)
     setProfileForm({location: ''});
   };
@@ -51,7 +51,6 @@ function UserPrivateProfile () {
       team: '',
       tasks: [],
       role: ''});
-      console.log('LOGGING OUT')
       history.push('/')
   };
   
