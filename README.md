@@ -16,7 +16,7 @@ git clone https://github.com/MagReda16/whoswhere
 cd client
 npm install
 ```
-3. Install dependecies for the server, and install ts-node globally
+3. Install dependecies for the server, and ts-node globally
 ```
 cd server
 npm install

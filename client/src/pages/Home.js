@@ -13,10 +13,11 @@ const Home = () => {
 
   return (
     <div className="home_page_container">
-      <h3>welcome to whosWhere!</h3>
-      {logIn ? <Login /> : <Register />}
+      {!logIn && 
+      <p>a simple way to keep track of your team... without tracking your team</p>}
+      {logIn ? <Register /> : <Login/>}
       <button className="login_register" onClick={handleClick}>
-        {logIn ? "Not a user? Register here" : "Already a user? Sign in here"}
+        {logIn ? "Already a user? Sign in here" : "New here? Register"}
       </button>
     </div>
   );

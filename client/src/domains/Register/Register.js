@@ -48,12 +48,8 @@ function Register() {
   };
 
   return (
-    <div className="register_page">
+    <div>
       {error && <div> {error.message} </div>}
-      <div className="register_title_container">
-        <h4 className="register_title">Let's Sign Up!</h4>
-      </div>
-      <div className="register_form_container">
         <form className="register_form" onSubmit={handleSubmit}>
           <input
             className="firstname"
@@ -128,7 +124,6 @@ function Register() {
           />
         </form>
       </div>
-    </div>
   );
 }
 

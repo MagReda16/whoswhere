@@ -1,41 +1,22 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-
-}
-
-.register_page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.register_form_container {
-  display: flex;
-  flex-direction: column;
-  background-color: #548eba;;
-  border-radius: 4px;
-}
-
 .register_form {
   display: flex;
   flex-direction: column;
-  margin: 28px;
-  margin-bottom: 22px;
-  padding: 10px;
-  padding-bottom: 6px;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #CBD2EA;
+  padding: 20px;
+  width: 50vw;
+  border-radius: 4px;
 }
 
 .firstname, .lastname, .reg_username, .reg_password, .role, .team {
-  border-radius: 2px;
   border-style: none;
   margin: 5px;
-  padding: 4px;
-  font-weight: bolder;
-  width: 40vw;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+  padding: 8px;
+  width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 3px 8px;
 }
+
 ::placeholder {
   color: gray;
 }
@@ -50,28 +31,24 @@
 }
 
 .submit {
-  border-radius: 2px;
-  border-style: none;
-  background-color: #e68627;
-  font-weight: bold;
-  color: white;
-  padding: 8px;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 3px 8px;
+  background-color: #C4C4C4;
+  border: 1px solid #FFFFFF;
+  width: 150px;
+  color: #FFFFFF;
+  height: 30px;
 }
 
 .submit:active {
-  background-color: gray;
-  color:#e68627;
+  background-color: #3D3D3F;
+  color:#FFFFFF;
 }
 
 .submit:hover {
-  background-color: white;
-  color:#e68627;
+  background-color: #FFFFFF;
+  color: #C4C4C4;
+  border: 1px solid #C4C4C4;
   cursor: pointer;
-}
-
-body {
-  background-color: aliceblue
 }
 
 .manager_tag {

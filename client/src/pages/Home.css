@@ -1,39 +1,27 @@
 .home_page_container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  color: #e68627;
+  height: 90vh;
+
+}
+.home_page_container p {
+  color: black;
 }
 
 .login_register {
-  border-radius: 2px;
   border-style: none;
-  background-color: #e68627;
-  color: white;
-  font-weight: bold;
+  background-color: transparent;
   padding: 6px;
-  margin-top: 5px;
-  margin-bottom: 20px;
 }
 
 .login_register:hover {
-  background-color: white;
-  background-color: #a3a19e;
   cursor: pointer;
 }
 
 .login_register:active {
   background-color: white;
-  color: #e68627;
+  color: #3D3D3F;
 }
-@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Hind+Siliguri:wght@300&family=Montserrat:wght@600&family=Oswald:wght@300&family=Oxygen&family=Sora:wght@800&display=swap");
 
-body {
-  background-image: url("../assests/sky.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: "Dongle", sans-serif;
-  font-family: "Hind Siliguri", sans-serif;
-  font-weight: 900;
-}

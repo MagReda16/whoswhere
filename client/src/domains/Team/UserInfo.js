@@ -4,6 +4,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "./UserInfo.css";
 
 const UserInfo = ({ user }) => {
+
   return (
     <div className="public_user_info_container">
       <div className="public_user_info_header">

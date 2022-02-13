@@ -38,10 +38,9 @@ function Login() {
   };
 
   return (
-    <div className="login_page">
+    <div>
       {error && <div> {error.message} </div>}
-      <h2>Let's Log In!</h2>
-      <div className="login_form_container">
+      <div>
         <form className="login_form" onSubmit={handleSubmit}>
           <input
             className="username"

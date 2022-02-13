@@ -4,6 +4,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import router from './router';
 
+
 const app: Application = express();
 
 const PORT = process.env.PORT;

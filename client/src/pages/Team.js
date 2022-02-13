@@ -12,7 +12,7 @@ const Team = () => {
   const handleClick = () => {
     setTaskDisplay(!taskDisplay);
   };
-
+ 
   return (
     <div>
       <h2>
