@@ -66,25 +66,6 @@ const UserProfile = () => {
           LOGOUT
         </button>
       </div>
-      <div className="user_info_wrapper">
-        <div className="user_image">
-          <FontAwesomeIcon icon={faUser} />
-        </div>
-        <div className="user_details">
-          {loggedUser.admin && <p>⭐️ Manager</p>}
-          <p>
-            Role: <span className="info">{loggedUser.role}</span>
-          </p>
-          <p />
-          {!loggedUser.location || loggedUser.location === "" ? (
-            <p>No recent update 🌎 </p>
-          ) : (
-            <p>
-              Location: <span className="info">{loggedUser.location}</span>
-            </p>
-          )}
-        </div>
-      </div>
     </div>
   );
 }
