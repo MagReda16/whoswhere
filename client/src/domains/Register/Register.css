@@ -9,7 +9,7 @@
   border-radius: 4px;
 }
 
-.firstname, .lastname, .reg_username, .reg_password, .role, .team {
+.firstname, .lastname, .reg_email, .reg_password, .role, .team {
   border-style: none;
   margin: 5px;
   padding: 8px;

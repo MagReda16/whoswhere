@@ -7,7 +7,7 @@ import { useAuth } from "../../lib/context/authContext";
 const initialState = {
   firstName: "",
   lastName: "",
-  username: "",
+  email: "",
   password: "",
   role: "",
   team: "",
@@ -33,7 +33,7 @@ function Register() {
       const data = await apiService.registerUser(registerForm);
       if (data.error) throw new Error(data.message);
       const { accessToken } = await apiService.logInUser({
-        username: registerForm.username,
+        email: registerForm.email,
         password: registerForm.password,
       });
       localStorage.setItem("accessToken", accessToken);
@@ -86,11 +86,11 @@ function Register() {
             required
           />
           <input
-            className="reg_username"
-            type="text"
-            name="username"
-            placeholder="Create username..."
-            value={registerForm.username}
+            className="reg_email"
+            type="email"
+            name="email"
+            placeholder="Email..."
+            value={registerForm.email}
             onChange={handleChange}
             required
           />

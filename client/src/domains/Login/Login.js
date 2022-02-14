@@ -5,7 +5,7 @@ import { useAuth } from "../../lib/context/authContext";
 import "./Login.css";
 
 const initialState = {
-  username: "",
+  email: "",
   password: "",
 };
 
@@ -43,11 +43,11 @@ function Login() {
       <div>
         <form className="login_form" onSubmit={handleSubmit}>
           <input
-            className="username"
-            type="text"
-            name="username"
-            placeholder="Enter username..."
-            value={logInForm.username}
+            className="email"
+            type="email"
+            name="email"
+            placeholder="Email..."
+            value={logInForm.email}
             onChange={handleChange}
             required
           />

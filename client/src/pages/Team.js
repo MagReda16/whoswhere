@@ -11,8 +11,9 @@ const Team = () => {
 
   const handleClick = () => {
     setTaskDisplay(!taskDisplay);
-  };
+  }
  
+  console.log(data)
   return (
     <div>
       <h2>

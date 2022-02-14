@@ -12,9 +12,9 @@ const JWT_SECRET: string | jwt.Secret = process.env.JWT_SECRET! || 'this is for 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const existingUser = await User.findOne({
-      username: req.body.username,
+      email: req.body.email,
     });
-    if (existingUser) throw new Error('Username already exists');
+    if (existingUser) throw new Error('Email already exists');
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     let existingTeam = await Team.findOne({ name: req.body.team });
     if (!existingTeam) {
@@ -38,8 +38,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username: username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
     if (!user) throw new Error('Email or password is incorrect');
     const isValidPassword: boolean = await bcrypt.compare(
       password,
@@ -60,10 +60,10 @@ export const updateLocation = async (
 ): Promise<void> => {
   try {
     if (!req.body.user) throw new Error();
-    const { username } = req.body.user;
+    const { email } = req.body.email;
     const { location }: { location: string } = req.body;
     const updatedUser = await User.findOneAndUpdate(
-      { username },
+      { email },
       { location },
       { new: true }
     );
