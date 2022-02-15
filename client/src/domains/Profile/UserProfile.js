@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import apiService from "../../lib/utils/ApiService";
 import { useAuth } from "../../lib/context/authContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faUser } from "@fortawesome/free-solid-svg-icons";
 import "./UserProfile.css";
 
 const UserProfile = () => {
   const { loggedUser, setLoggedUser } = useAuth();
-  const history = useHistory();
-
   const [profileForm, setProfileForm] = useState({ location: "" });
 
   const handleChange = (e) => {
@@ -23,51 +18,39 @@ const UserProfile = () => {
     setProfileForm({ location: "" });
   };
 
-  const handleLogOut = () => {
-    localStorage.removeItem("accessToken");
-    setLoggedUser(null);
-    history.push("/");
-  };
 
   return (
-    <div className="user_page">
-      <div className="user_location_wrapper">
-        <h2 className="user_greeting">Welcome, {loggedUser.firstName}!</h2>
-        <div className="current_user_information">
-          <FontAwesomeIcon icon={faCoffee} />
-          {!loggedUser.location || loggedUser.location === "" ? (
-            <h4>Let your team know where you are below</h4>
-          ) : (
-            <h4>
-              You're working from: <span>{loggedUser.location}</span>
-            </h4>
-          )}
-        </div>
-        <div className="update_user_container">
-          <p className="update_title">Working from somewhere else?</p>
-          <p>Let your team know:</p>
-          <form className="update_user_form" onSubmit={handleSubmit}>
+    <div>
+      <div className="user_greeting_container">
+        <h2>Welcome, {loggedUser.firstName}</h2>
+        <p>You're checked in</p>
+      </div>
+      <div className="user_info_container">
+        <h5>Your role: {loggedUser.role}</h5>
+        {!loggedUser.location || loggedUser.locaiton === '' ? 
+         <h4>Update your location below</h4> : <h4>Your current work location: {loggedUser.location}</h4>}
+      </div>
+      <div className="update_user_container">
+          <p>Where are you today?</p>
+          <form onSubmit={handleSubmit}>
             <input
               className="update_user_location"
               name="location"
-              placeholder="Tell your team..."
+              placeholder="Location..."
               value={profileForm.location}
               onChange={handleChange}
-            ></input>
+            />
             <input
               className="submit_user_update"
               type="submit"
               name="update"
-              value="Update location"
+              value="Update"
             />
           </form>
-        </div>
-        <button className="logout" onClick={handleLogOut}>
-          LOGOUT
-        </button>
       </div>
-    </div>
+    </div>  
   );
 }
+
 
 export default UserProfile;

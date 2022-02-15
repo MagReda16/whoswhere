@@ -60,7 +60,7 @@ export const updateLocation = async (
 ): Promise<void> => {
   try {
     if (!req.body.user) throw new Error();
-    const { email } = req.body.email;
+    const { email } = req.body.user;
     const { location }: { location: string } = req.body;
     const updatedUser = await User.findOneAndUpdate(
       { email },
@@ -69,7 +69,7 @@ export const updateLocation = async (
     );
     res.status(200).send(updatedUser);
   } catch (e: any) {
-    // console.error(e);
+    console.error(e);
     res.status(409).send({ error: '409', message: e.message });
   }
 };

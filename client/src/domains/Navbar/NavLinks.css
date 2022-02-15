@@ -24,7 +24,7 @@
 .nav_links a:hover,
 .nav_links a:active,
 .nav_links a.active {
-  background: #e68627;
+  background: #C4C4C4;
   border-color: white;
   color: white;
 }
@@ -34,8 +34,7 @@
   border: 1px solid #292929;
   color: #292929;
   background: transparent;
-  padding: 0.5rem;
-  font: inherit;
+  padding: 0.3rem;
 }
 
 .nav_links button:focus {
