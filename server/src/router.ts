@@ -11,7 +11,8 @@ router
   .post('/register', userController.register)
   .post('/login', userController.login)
   .get('/profile', authMiddleware, userController.getUser)
-  .put('/profile/location', authMiddleware, userController.updateLocation);
+  .put('/profile/location', authMiddleware, userController.updateLocation)
+  .put('/profile/checkin', authMiddleware, userController.updateCheckin);
 
 // team routes
 router

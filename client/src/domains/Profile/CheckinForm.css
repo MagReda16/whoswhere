@@ -1,0 +1,26 @@
+.checkin_wrapper {
+  background-color: rgba(0,0,0, .4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  margin: 0;
+}
+
+.checkin_wrapper form {
+  background-color: #CBD2EA;
+  width: 50vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+.checkin_wrapper button {
+  background-color: transparent;
+  border-style: none;
+}

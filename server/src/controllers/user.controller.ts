@@ -74,6 +74,26 @@ export const updateLocation = async (
   }
 };
 
+export const updateCheckin = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    if (!req.body.user) throw new Error();
+    const { email } = req.body.user;
+    const { checkedIn }: { checkedIn: boolean } = req.body;
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { checkedIn },
+      { new: true }
+    );
+    res.status(200).send(updatedUser);
+  } catch (e: any) {
+    console.error(e);
+    res.status(409).send({ error: '409', message: e.message });
+  }
+};
+
 export const getUser = async (
   req: Request,
   res: Response

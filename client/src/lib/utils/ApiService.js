@@ -100,6 +100,27 @@ apiService.addTask = async (taskForm) => {
   }
 };
 
+apiService.updateCheckin = async (checkinForm) => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    const res = await fetch(`${API_URL}profile/checkin`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(checkinForm),
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+    return { error: "500", message: "Internal server error" };
+  }
+};
+
 apiService.logOut = () => {
   localStorage.removeItem("accessToken");
 };

@@ -38,6 +38,11 @@ const userSchema: Schema = new Schema({
     type: String,
     required: false,
   },
+  checkedIn: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
 });
 
 export default mongoose.model<IUser>("User", userSchema);
