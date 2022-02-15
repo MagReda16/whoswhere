@@ -27,6 +27,7 @@ export const useTeam = () => {
   return {
     data,
     error,
+    isLoading: !data && !error,
     teamAdmin,
   };
 };

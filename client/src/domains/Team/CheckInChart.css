@@ -1,0 +1,7 @@
+.chart_container {
+  width: 200px;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 10px;
+}
