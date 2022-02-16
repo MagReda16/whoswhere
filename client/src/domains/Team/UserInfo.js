@@ -7,7 +7,6 @@ const UserInfo = ({ user }) => {
     <div className="public_user_info_container">
       <div className="public_user_info">
         <h3>{user.firstName} {user.lastName}</h3>
-        {user.admin && <p className="manager_tag">⭐️ Manager</p>}
         <p>Role: <span className="public_info">{user.role}</span></p>
         <p />
         {!user.location || user.location === "" ? (
@@ -20,7 +19,7 @@ const UserInfo = ({ user }) => {
       </div>
       <div className="public_user_assets">
           <p>Map?</p>
-          <p>Checked in? {user.checkedIn ? '✔️' : '❌'}</p>
+          <p>Checked in? <br/>{user.checkedIn ? '✔️' : '❌'}</p>
       </div>
     </div>
   );

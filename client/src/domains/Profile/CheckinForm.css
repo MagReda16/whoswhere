@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   margin: 0;
 }
@@ -23,4 +23,9 @@
 .checkin_wrapper button {
   background-color: transparent;
   border-style: none;
+}
+
+input[type="checkbox"]{
+  width: 30px;
+  height: 30px;
 }

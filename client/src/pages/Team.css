@@ -4,7 +4,10 @@
 }
 
 .team_name{
+  display: inline;
   margin-left: 15px;
   font-size: 28px;
+  width: 30vw;
+  padding: 0;
 }
 

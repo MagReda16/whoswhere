@@ -6,13 +6,17 @@
   margin: 50px;
   width: 40vw;
   height: 18vh;
+  overflow: hidden;
+  white-space: nowrap;
   border-radius: 2px;
+  font-size-adjust: 30;
   box-shadow: rgba(0, 0, 0, 0.1) 2px 3px 8px;
 }
 
 .public_user_info {
   display: flex;
   flex-direction: column;
+  font-size-adjust: 1;
 }
 .public_user_info h3 {
   margin-left: 10px;
@@ -33,6 +37,7 @@
   width: 10vw;
   height: inherit;
 }
+
 .public_user_assets p {
   background-color: #FFFFFF;
   display: flex;

@@ -27,6 +27,7 @@ const CheckInChart = () => {
   };
   return (
     <div className='chart_container'>
+      <h3>Checked in:</h3>
       <Pie
         data={chartData}
         width={30}

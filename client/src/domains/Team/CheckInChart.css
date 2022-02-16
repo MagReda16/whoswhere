@@ -1,7 +1,13 @@
 .chart_container {
-  width: 200px;
+  width: 180px;
   height: auto;
   margin: 0 auto;
+  margin-right: 130px;
   position: relative;
+  text-align: center;
   margin-bottom: 10px;
+}
+.chart_container h3 {
+  font-size: 18px;
+  font-weight: 300;
 }
