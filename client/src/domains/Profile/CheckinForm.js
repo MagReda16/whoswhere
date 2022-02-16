@@ -21,7 +21,7 @@ const CheckinForm = ({ handleClose }) => {
     <div className="checkin_wrapper">
       <form onSubmit={handleSubmit}>
       <button onClick={handleClose}>X</button>
-        <h6>Check in to let your team know you're here</h6>
+        <h6>Check in to let your team know you're online</h6>
         <input
           className="checkedIn"
           id="checkedIn"

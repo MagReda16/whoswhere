@@ -33,8 +33,8 @@ const UserProfile = () => {
     <div>
       <div className="user_greeting_container">
         <h2>Welcome, {loggedUser.firstName}</h2>
-        {checkedIn ? <p>You're checked in</p> : <p onClick={handleShowCheckIn}>You're not <span>checked in</span></p>}
-        {showCheckIn && <CheckinForm handleClose={handleClose} />}
+        {checkedIn ? <p>You're checked in</p> : <p onClick={handleShowCheckIn}>You're in private mode <br/> <span>Check in here</span></p>}
+        {showCheckIn && <CheckinForm handleClose={handleClose} />} 
       </div>
       <div className="user_info_container">
         <h5>Your role: {loggedUser.role}</h5>
