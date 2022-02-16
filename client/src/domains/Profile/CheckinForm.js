@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import apiService from "../../lib/utils/ApiService";
+import { useAuth } from "../../lib/context/authContext";
 import './CheckinForm.css'
 
 
 const CheckinForm = ({ handleClose }) => {
   const initialState = { checkedIn: false}
+  const { setLoggedUser } = useAuth();
 
   const [ checkinForm, setCheckinForm ] = useState(initialState)
 
@@ -13,7 +15,8 @@ const CheckinForm = ({ handleClose }) => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await apiService.updateCheckin(checkinForm);
+    const updatedUser = await apiService.updateCheckin(checkinForm);
+    setLoggedUser(updatedUser);
     handleClose()
   }
 

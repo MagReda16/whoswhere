@@ -18,7 +18,7 @@ const UserInfo = ({ user }) => {
         )}
       </div>
       <div className="public_user_assets">
-          <p>Map?</p>
+          {/* <p>Map?</p> */}
           <p>Checked in? <br/>{user.checkedIn ? '✔️' : '❌'}</p>
       </div>
     </div>
