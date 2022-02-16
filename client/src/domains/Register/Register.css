@@ -49,6 +49,7 @@
   color: #C4C4C4;
   border: 1px solid #C4C4C4;
   cursor: pointer;
+  transition: all .3s ease;
 }
 
 .admin {

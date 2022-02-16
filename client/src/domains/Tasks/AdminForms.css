@@ -1,21 +1,33 @@
 .add_task_container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 40vw;
-  height: 35vh;
   justify-content: center;
   background-color: #CBD2EA;
   color: white;
+  margin-right: 10px;
   border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+  height: 50vh;
+  box-shadow: rgba(0, 0, 0, 0.1) 2px 3px 8px;
+}
+
+.add_task_container p {
+  text-align: center;
 }
 
 .add_task_form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 60vh;
+  height: 30vh;
+}
+
+.urgent_tasks{
+  display: flex;
+  flex-direction: row;
+  width: 35vw;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -23,7 +35,6 @@
   border-style: none;
   margin: 5px;
   padding: 10px;
-  max-width: 300px;
   box-shadow: rgba(0, 0, 0, 0.1) 2px 3px 8px;
 }
 
@@ -34,6 +45,7 @@
   width: 150px;
   color: #FFFFFF;
   height: 30px;
+  transition: all .8s ease;
 }
 
 .submit_task_btn:active {

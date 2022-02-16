@@ -6,8 +6,9 @@ import CheckInChart from "../domains/Team/CheckInChart";
 const Team = () => {
 
 const { data, isLoading } = useTeam();
-const displayTeam =  data.name[0].toUpperCase() + data.name.substring(1)
 if (isLoading) return <h2>Loading...</h2>
+const displayTeam =  data.name[0].toUpperCase() + data.name.substring(1)
+
 
   return (
     <div>

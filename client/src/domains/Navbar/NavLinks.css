@@ -28,6 +28,7 @@
   background: #C4C4C4;
   border-color: white;
   color: white;
+  transition: all .3s ease;
 }
 
 .nav_links button {
