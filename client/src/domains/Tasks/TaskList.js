@@ -8,7 +8,7 @@ const TaskList = ({ data }) => {
           return <Task key={id} task={task.task} />;
         })
       ) : (
-        <h4>No Tasks!</h4>
+        <h4>No Tasks</h4>
       )}
     </div>
   )

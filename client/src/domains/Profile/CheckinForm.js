@@ -7,7 +7,6 @@ import './CheckinForm.css'
 const CheckinForm = ({ handleClose }) => {
   const initialState = { checkedIn: false}
   const { setLoggedUser } = useAuth();
-
   const [ checkinForm, setCheckinForm ] = useState(initialState)
 
   function handleChange(e, valkey = "value") {

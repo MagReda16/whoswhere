@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import apiService from "../utils/ApiService";
 import useSWR from "swr";
-import { useSWRConfig } from "swr";
 const API_URL = process.env.REACT_APP_API_URL;
 
 

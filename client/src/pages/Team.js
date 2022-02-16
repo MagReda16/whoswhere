@@ -5,12 +5,13 @@ import CheckInChart from "../domains/Team/CheckInChart";
 
 const Team = () => {
 
-const { data } = useTeam();
+const { data, isLoading } = useTeam();
+const displayTeam =  data.name[0].toUpperCase() + data.name.substring(1)
+if (isLoading) return <h2>Loading...</h2>
 
-  console.log(data)
   return (
     <div>
-      <h2 className="team_name">{data && data.name} Team</h2>
+      <h2 className="team_name">Your Team: {data && displayTeam}</h2>
       <div className="public_profile_page">
         {data && <UserList data={data}/>}
         <CheckInChart />

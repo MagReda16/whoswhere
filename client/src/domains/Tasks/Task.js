@@ -4,9 +4,9 @@ import './Task.css';
 const Task = ({ task }) => {
 
   return (
-      <div className="task" >
+    <div className="task" >
       {task}
-      </div>
+    </div>
   );
 }
 

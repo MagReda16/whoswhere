@@ -51,84 +51,8 @@
   cursor: pointer;
 }
 
-.manager_tag {
-  font-size: 15px;
-  margin-left: 180px;
-  
+.admin {
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
-
-
-
-
-
-/* 
-.register_page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.register_form_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 80vh;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 90px;
-  padding-bottom: 110px;
-  border-radius: 5px;
-  background-color: #478fc9;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
-}
-
-.register_form {
-  display: flex;
-  flex-direction: column;
-  width: 50vw;
-  height: 40vh;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-
-.firstname, .lastname, .username, .password, .role  {
-  border-radius: 2px;
-  border-style: none;
-  background-color: white;
-  color: #e68627;
-  font-weight: bold;
-  padding: 8px;
-  margin: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
-}
-
-::placeholder {
-  color: #a3a19e;
-}
-
-.checkbox_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 10px;
-  color: white;
-  font-weight: bold;
-}
-
-.submit {
-  border-radius: 2px;
-  border-style: none;
-  background-color: #e68627;
-  font-weight: bold;
-  color: white;
-  padding: 8px;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
-}
-
-.submit:hover {
-  background-color: white;
-  color: #f58742;
-  cursor: pointer;
-} */

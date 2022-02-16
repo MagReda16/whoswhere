@@ -28,16 +28,18 @@ const UserProfile = () => {
   };
 
   const checkedIn = loggedUser.checkedIn
+  const displayName =  loggedUser.firstName[0].toUpperCase() + loggedUser.firstName.substring(1)
+  const displayRole =  loggedUser.role[0].toUpperCase() + loggedUser.role.substring(1)
 
   return (
     <div>
       <div className="user_greeting_container">
-        <h2>Welcome, {loggedUser.firstName}</h2>
+        <h2>Welcome, {displayName}</h2>
         {checkedIn ? <p>You're checked in</p> : <p onClick={handleShowCheckIn}>You're in private mode. <span>Check in here</span></p>}
         {showCheckIn && <CheckinForm handleClose={handleClose} />} 
       </div>
       <div className="user_info_container">
-        <h5>Your role: {loggedUser.role}</h5>
+        <h5>Your role: {displayRole}</h5>
         {!loggedUser.location || loggedUser.locaiton === '' ?
           <h4>Update your location below</h4> : <h4>Your current work location: {loggedUser.location}</h4>}
       </div>
