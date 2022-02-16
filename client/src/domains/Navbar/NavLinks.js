@@ -19,10 +19,13 @@ function NavLinks () {
         <NavLink to="/" exact>Home</NavLink>
       </li>
       <li>
-        <NavLink to="/profile">My Profile</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
      </li>
       <li>
-        <NavLink to="/teams">My Team</NavLink>
+        <NavLink to="/teams">Team</NavLink>
+      </li>
+      <li>
+        <NavLink to="/tasks">Tasks</NavLink>
       </li>
       <li>
       <button className="logout" onClick={handleLogOut}>

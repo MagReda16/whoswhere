@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  white-space: nowrap;
   align-items: center;
 }
 
@@ -18,7 +19,7 @@
   border: 1px solid transparent;
   color: white;
   text-decoration: none;
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 
 .nav_links a:hover,

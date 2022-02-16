@@ -1,13 +1,14 @@
 import { useState } from "react";
-import apiService from "../../lib/utils/ApiService";
 import "./AdminForms.css";
+import { useTeam } from "../../lib/hooks/useTeam";
 
 const initialState = {
   task: ''
 };
 
 const AdminForms = () => {
-  const [taskForm, setTaskForm] = useState(initialState);
+  const { updateTeam } = useTeam()
+  const [ taskForm, setTaskForm ] = useState(initialState);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -16,12 +17,12 @@ const AdminForms = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await apiService.addTask(taskForm);
+    updateTeam(taskForm)
     setTaskForm(initialState);
   };
 
   return (
-    <div className="add_task_wrapper">
+  
       <div className="add_task_container">
         <p>Let your team know what's important today</p>
         <form className="add_task_form" onSubmit={handleSubmit}>
@@ -41,7 +42,7 @@ const AdminForms = () => {
           />
         </form>
       </div>
-    </div>
+ 
   );
 }
 

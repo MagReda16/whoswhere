@@ -1,0 +1,21 @@
+.task_page_container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.task_page_container h2{
+  display: inline;
+  margin-left: 15px;
+  font-size: 28px;
+  width: 30vw;
+  padding: 0;
+}
+
+.task_list_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+}

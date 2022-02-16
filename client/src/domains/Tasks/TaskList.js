@@ -1,11 +1,8 @@
 import Task from './Task'
 
-const TaskList = ({ data, taskDisplay }) => {
+const TaskList = ({ data }) => {
   return (
-    <div
-      className="task_list"
-      style={{ display: taskDisplay ? "block" : "none" }}
-    >
+    <div className='task_list'>
       {data && data.tasks.length > 0 ? (
         data.tasks.map((task, id) => {
           return <Task key={id} task={task.task} />;

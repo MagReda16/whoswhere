@@ -82,7 +82,7 @@ apiService.updateLocation = async (profileForm) => {
 apiService.addTask = async (taskForm) => {
   try {
     const accessToken = localStorage.getItem("accessToken");
-    const res = await fetch(`${API_URL}team/task`, {
+    const res = await fetch(`${API_URL}task`, {
       method: "POST",
       mode: "cors",
       credentials: "include",

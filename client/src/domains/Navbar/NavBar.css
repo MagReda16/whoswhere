@@ -3,6 +3,7 @@
 .mainnav_title {
 font-family: 'Sora', sans-serif;
 text-shadow: 0px 3px 3px #3D3D3F;
+margin-right: 8rem;
 }
 .navbar_menu {
   width: 3rem;
@@ -11,7 +12,7 @@ text-shadow: 0px 3px 3px #3D3D3F;
   border: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-right: 2rem;
   cursor: pointer;
 }

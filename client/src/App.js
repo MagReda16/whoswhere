@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import Team from "./pages/Team";
 import NavBar from "./domains/Navbar/NavBar";
 import { AuthProvider } from "./lib/context/authContext";
+import Tasks from "./pages/Tasks";
 
 const App = () => {
   const [loggedUser, setLoggedUser] = useState(null);
@@ -41,6 +42,9 @@ const App = () => {
             </Route>
             <Route path="/teams" exact>
               <Team />
+            </Route>
+            <Route path="/tasks" exact>
+              <Tasks />
             </Route>
             <Redirect to="/" />
           </Switch>
