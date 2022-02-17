@@ -45,7 +45,7 @@
   width: 150px;
   color: #FFFFFF;
   height: 30px;
-  transition: all .8s ease;
+  transition: all .3s ease;
 }
 
 .submit_task_btn:active {

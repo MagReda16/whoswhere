@@ -9,4 +9,5 @@ export default interface IUser extends Document {
   role: string;
   teamId?: string;
   location?: string;
+  checkedIn: boolean;
 }

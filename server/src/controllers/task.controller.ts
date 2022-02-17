@@ -16,6 +16,9 @@ export const addTask = async (
     if (!team) throw new Error()
     const task: ITask = await Task.create({
       task: req.body.task,
+      due: req.body.due,
+      urgent: req.body.urgent,
+      veryUrgent: req.body.veryUrgent,
       team: req.body.user.teamId,
     });
     team.tasks.push(task._id);

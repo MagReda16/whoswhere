@@ -17,6 +17,6 @@ router
 // team routes
 router
   .get('/team', authMiddleware, teamController.getTeam)
-  .post('/team/task', authMiddleware, taskController.addTask);
+  .post('/task', authMiddleware, taskController.addTask);
 
 export default router;

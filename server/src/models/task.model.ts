@@ -10,6 +10,18 @@ const taskSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  due: {
+    type: Date,
+    required: false
+  },
+  urgent: {
+    type: Boolean,
+    required: false
+  },
+  veryUrgent: {
+    type: Boolean,
+    required: false
+  }
 });
 
 export default mongoose.model<ITask>("Task", taskSchema);
