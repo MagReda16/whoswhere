@@ -1,6 +1,8 @@
 
 # whosWhere
 
+![whoswhere](whoswhere-gif.gif)
+
 -a productivity app that allows teams to keep track of their coworker's locations, without using location tracking services
 
 -managers can add tasks to let their team know what's important that day
