@@ -15,7 +15,7 @@ const Tasks = () => {
 
   return (
     <div className='task_page_container'>
-      <h2>Your team: {data&& data.name}</h2>
+      <h2>Your Team: {data&& data.name}</h2>
       <div className='task_list_container'>
       {loggedUser.admin && <AdminForms data={data}/>}
       <TaskList data={data}/>

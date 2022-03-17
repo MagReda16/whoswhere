@@ -9,7 +9,6 @@ const { data, isLoading } = useTeam();
 if (isLoading) return <h2>Loading...</h2>
 const displayTeam =  data.name[0].toUpperCase() + data.name.substring(1)
 
-
   return (
     <div>
       <h2 className="team_name">Your Team: {data && displayTeam}</h2>

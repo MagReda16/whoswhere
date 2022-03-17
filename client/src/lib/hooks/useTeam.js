@@ -16,7 +16,7 @@ const fetcher = async (key) => {
   });
   const data = await res.json();
   return data;
-};
+}
 
 export const useTeam = () => {
 
